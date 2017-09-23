@@ -1,0 +1,435 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+}
+
+body {
+	min-width: 990px;
+    overflow-x: hidden;
+}
+
+h3 {
+	color: #fff;
+}
+
+/* NAVBAR */
+
+#navbar {
+	display: inline-block;
+	border-radius: 3px;
+	position: fixed;
+    top: 7px;
+    width: 52%;
+    left: 50%;
+    margin-left: -493px;
+    height: 60px;
+    z-index: 100;
+    background: #313132;
+}
+
+ 
+#navbar .logo {
+    background: url('img/storm-logo.png') no-repeat 0 0;
+    width: 255px;
+    height: 26px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-left: 15px;
+}
+	
+
+#navbar .g1 .g2 {
+	background: url('img/divisor-menu.gif') no-repeat right center;
+    line-height: 28px;
+    font-size: 1.4em;
+    text-transform: uppercase;
+}
+
+	
+.g1 {
+	display: inline-block;
+    vertical-align: middle;
+    width: calc( 100% - 290px );
+	list-style: none;
+}
+
+.g1 .g2 {
+	display: inline-block;
+}
+
+.g1 .g2 a {
+	color: #fefefe;
+	display: block;
+	margin: 6px 20px 6px 19px;
+	font-size: 15px;
+	text-transform: uppercase;
+	text-decoration: none;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 3px solid transparent;
+}
+
+.g2 a:hover {
+	border-bottom: 3px solid yellow;
+
+}
+
+#navbar .toggle-menu {	
+	display: none;
+}
+
+#navbar .toggle-menu ul{	
+	display: inline-block;
+}
+
+#navbar label {
+	float: right;
+	width: 20px;
+	padding-top: 10px;
+	display: none;
+	
+}
+
+/* BANNER/BODY */
+
+#banner-1 {
+	height: 500px;
+	padding-top: 70px;
+}
+
+.color-bg {
+	    background-image: url('img/color-bg.png');
+}
+
+#banner-1 .color-bg2 {
+	background: url('img/color-bg2.png') no-repeat top center; 
+}
+
+.container {
+	text-align: center;
+	margin:  0 auto;
+	width: 52%;
+	height: 488px;
+}
+
+/*  NEGOCIOS */
+
+#negocios {
+	padding-top: 50px;
+    padding-bottom: 20px;
+    background-image: url('img/pattern-black.png');
+
+}
+
+#negocios .slider {
+	width: calc(100% - 150px);
+	display: block;
+	position: initial;
+	color: #fff;
+}
+
+#negocios .sidebar {
+	width: 28%;
+	display: inline-block;
+	vertical-align: top;
+	color: #fff;
+}
+
+#negocios .content {
+	position: relative;
+	width: 100%;
+	max-width: 70%;
+	display: inline-block;
+	text-align: left;
+}
+
+#negocios .content .slick-prev {
+	position: absolute;
+	right: 70px;
+	top: 90px;
+	left: initial;
+}
+
+
+#negocios .content .slick-next {
+	position: absolute;
+	right: 70px;
+	top: 0px;
+}
+
+#negocios .sidebar span {
+	display: block;
+	text-align: left;
+}
+
+#negocios .sidebar span.active {
+	color: yellow;
+}
+
+#negocios .content .slick-slide {
+	height: 500px;
+}
+
+.social-midia {
+	width: 50%;
+	height: 50%;
+}
+
+/* LEMA */
+#rodape {
+    padding-top: 90px;
+    padding-bottom: 75px;
+    background-image: url('img/pattern-darkblue.png');
+}
+
+#rodape .header {
+	width: 362px;
+	margin:  0 auto 20px;
+	position: relative;
+    padding: 9px 36px 0 31px;
+    min-height: 90px;
+    text-align: center;
+    color: #ddeaf5;
+    font-size: 102%;
+    display: block;
+}
+
+#rodape .header .bd.left {
+    width: 82px;
+    height: 2px;
+    top: 0;
+    left: 0;
+}
+#rodape .header .bd.right {
+    top: 17px;
+    right: 12px;
+    width: 4px;
+    height: 82px;
+}
+
+#rodape .header .bd.bottom {
+    right: 0;
+    top: 58px;
+    width: 82px;
+    height: 2px;
+}
+
+#rodape .header .bd {
+    position: absolute;
+    background-color: #1979bc;
+}
+
+/* FORMULARIO DE CONTATO  */
+
+#rodape .form {
+
+    height: 68%;
+    width: 50%;
+	background: url('img/sombra-contato.png') no-repeat right top;
+}
+
+#rodape .form  fieldset {
+    border: 0;
+    box-shadow: none;
+    padding-bottom: 20px;
+    position: relative;
+    display: block;
+}
+
+article.form , address {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#rodape .form .title {
+    padding-top: 30px;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: #e4f2fd;
+}
+
+
+@media (max-width: 840px) {
+  body, html {
+    max-width: 640px;
+    min-width: 320px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+	.toggle-menu {
+        padding:20px;
+        float:left;
+        display:inline-block;
+        box-shadow:0px 1px 1px rgba(0,0,0,0.15);
+        border-radius:3px;
+        background:#303030;
+        text-shadow:0px 1px 0px rgba(0,0,0,0.5);
+        color:#777;
+        font-size:20px;
+        transition:color linear 0.15s;
+    }
+ 
+    .toggle-menu:hover, .toggle-menu.active {
+        text-decoration:none;
+        color:#66a992;
+    }
+
+
+  #banner-1 {
+    max-width: 640px;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    margin: 0;
+  }
+
+  #navbar .g1 {
+  	display: block;
+  	width: 100%;
+  	padding-left: 20px;
+  }
+
+}
+
+@media ( max-width: 990px ) {
+    body {
+        min-width: initial;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 500px;
+        float: none;
+        display: block;
+        height: auto;
+    }
+
+    #banner-1{
+        height: auto;
+        padding-top: 100px;
+    }
+
+    #navbar {
+        width: 100%;
+        max-width: 500px;
+        float: none;
+        height: auto;
+        min-height: 60px;
+        margin-left: 0;
+        display: block;
+        left: 50%;
+        top: 0;
+        z-index: 99999;
+        background: transparent;
+        -webkit-transform: translateX(-50%);
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        transform: translateX(-50%);
+    }
+
+    #navbar .logo {
+        background: #313132 url(img/storm-logo.png) no-repeat center;
+        width: 100%;
+        height: 60px;
+        position: relative;
+        background-size: auto;
+        margin: 0;
+        display: block;
+    }
+
+    #menu {
+        display: none;
+        width: 100%;
+        max-width: 60%;
+        margin-left: auto;
+    }
+
+    #menu li {
+        display: block;
+        text-align: center;
+    }
+
+    #navbar .toggle-menu {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 28px;
+        font-weight: 300;
+        z-index: 2;
+    }
+
+    #navbar .g1 .g2, #navbar .address {
+        background: #313132;
+    }
+
+    #navbar .address{
+        color: #fff;
+        font-size: 14px;
+        padding-bottom: 10px;
+        text-align: left;
+        padding-left: 15px;
+        padding-top: 10px;
+    }
+
+    .g1 .g2 a {
+        margin: 0;
+    }
+
+    #banner-1 .slick-prev, #banner-1 .slick-next {
+        z-index: 999;
+        width: 60px;
+    }
+
+    #banner-1 .slick-next { right: 0; }
+    #banner-1 .slick-prev { left: 0; }
+
+    #negocios .content {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    #negocios .slider {
+        width: calc(100% - 90px);
+    }
+
+    #negocios .content .slick-prev, #negocios .content .slick-next {
+        width: 60px;
+        right: 0;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    article.slick-slide{
+        padding: 10px;
+    }
+
+    #negocios .sidebar{
+        width: 100%;
+        display: block;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    #negocios .sidebar span{
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    #banner-1 {
+        padding-top: 60px;
+        padding-bottom: 0;
+    }
+}
