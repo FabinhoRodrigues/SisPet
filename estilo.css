@@ -1,12 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Wendy+One');
+
 * {
     margin: 0px;
     padding: 0px;
     outline: none;
 }
 
-body {
-	min-width: 990px;
-    overflow-x: hidden;
+font-family: 'Wendy One', sans-serif;
+
+a , h2 , p {
+     font: open_sans ;
 }
 
 h3 {
@@ -16,43 +19,38 @@ h3 {
 /* NAVBAR */
 
 #navbar {
-	display: inline-block;
-	border-radius: 3px;
-	position: fixed;
-    top: 7px;
-    width: 52%;
-    left: 50%;
-    margin-left: -493px;
-    height: 60px;
-    z-index: 100;
-    background: #313132;
+    margin: 0 auto;
+    width: 740px;
+    background: #c1c3b7;
+    border-radius: 40px;
+    border: 2px solid;
+    margin-top: 9px;
+    margin-bottom: 5px;
 }
-
- 
-#navbar .logo {
-    background: url('img/storm-logo.png') no-repeat 0 0;
-    width: 255px;
-    height: 26px;
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    margin-left: 15px;
-}
-	
 
 #navbar .g1 .g2 {
-	background: url('img/divisor-menu.gif') no-repeat right center;
     line-height: 28px;
     font-size: 1.4em;
     text-transform: uppercase;
 }
 
+.position-dog-img {
+	width: 100%;
+	position: relative;
+	left: 20px;
+}
+
+.form-login-position {
+	position: relative;
+    bottom: 40px;
+}
+
 	
 .g1 {
-	display: inline-block;
-    vertical-align: middle;
-    width: calc( 100% - 290px );
-	list-style: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    text-align: center;
 }
 
 .g1 .g2 {
@@ -60,19 +58,20 @@ h3 {
 }
 
 .g1 .g2 a {
-	color: #fefefe;
+	color: #ffffff;
 	display: block;
 	margin: 6px 20px 6px 19px;
-	font-size: 15px;
+	font-size: 22px;
 	text-transform: uppercase;
 	text-decoration: none;
     padding-bottom: 10px;
     padding-top: 10px;
     border-bottom: 3px solid transparent;
+    font-family: Wendy One;
 }
 
 .g2 a:hover {
-	border-bottom: 3px solid yellow;
+	border-bottom: 3px solid #666666;
 
 }
 
@@ -94,18 +93,18 @@ h3 {
 
 /* BANNER/BODY */
 
-#banner-1 {
-	height: 500px;
-	padding-top: 70px;
+.banner {
+    background: #fff;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: initial;
 }
 
 .color-bg {
 	    background-image: url('img/color-bg.png');
 }
 
-#banner-1 .color-bg2 {
-	background: url('img/color-bg2.png') no-repeat top center; 
-}
 
 .container {
 	text-align: center;
@@ -114,12 +113,17 @@ h3 {
 	height: 488px;
 }
 
+.container-2 {
+    font-family: Wendy One;
+    font-size: 36px;
+}
+
 /*  NEGOCIOS */
 
 #negocios {
 	padding-top: 50px;
     padding-bottom: 20px;
-    background-image: url('img/pattern-black.png');
+    background-color: #FDF3E7;
 
 }
 
@@ -181,19 +185,19 @@ h3 {
 #rodape {
     padding-top: 90px;
     padding-bottom: 75px;
-    background-image: url('img/pattern-darkblue.png');
 }
 
 #rodape .header {
 	width: 362px;
-	margin:  0 auto 20px;
-	position: relative;
+    margin: 0 auto 20px;
+    position: relative;
     padding: 9px 36px 0 31px;
     min-height: 90px;
     text-align: center;
-    color: #ddeaf5;
+    color: #666666;
     font-size: 102%;
     display: block;
+    font-family: Wendy One;
 }
 
 #rodape .header .bd.left {
@@ -211,7 +215,7 @@ h3 {
 
 #rodape .header .bd.bottom {
     right: 0;
-    top: 58px;
+    top: 87px;
     width: 82px;
     height: 2px;
 }
@@ -227,7 +231,6 @@ h3 {
 
     height: 68%;
     width: 50%;
-	background: url('img/sombra-contato.png') no-repeat right top;
 }
 
 #rodape .form  fieldset {
@@ -247,189 +250,51 @@ article.form , address {
     padding-top: 30px;
     font-size: 1.5em;
     margin-bottom: 15px;
-    color: #e4f2fd;
+    color: black;
+    font-family: Wendy One;
+}
+
+.address-style {
+	font-family: Wendy One;
+    font-size: 20px;
 }
 
 
-@media (max-width: 840px) {
-  body, html {
-    max-width: 640px;
-    min-width: 320px;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
-	.toggle-menu {
-        padding:20px;
-        float:left;
-        display:inline-block;
-        box-shadow:0px 1px 1px rgba(0,0,0,0.15);
-        border-radius:3px;
-        background:#303030;
-        text-shadow:0px 1px 0px rgba(0,0,0,0.5);
-        color:#777;
-        font-size:20px;
-        transition:color linear 0.15s;
-    }
- 
-    .toggle-menu:hover, .toggle-menu.active {
-        text-decoration:none;
-        color:#66a992;
-    }
-
-
-  #banner-1 {
-    max-width: 640px;
-    width: 100%;
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    margin: 0;
-  }
-
-  #navbar .g1 {
-  	display: block;
-  	width: 100%;
-  	padding-left: 20px;
-  }
-
+.login {
+    width: 140px;
+    height: 40px;
+    margin-top: 8px;
+    float: right;
+    font-family: Wendy One;
 }
 
-@media ( max-width: 990px ) {
-    body {
-        min-width: initial;
-    }
+.login a {
+    padding-left: 10px;
+}
 
-    .container {
-        width: 100%;
-        max-width: 500px;
-        float: none;
-        display: block;
-        height: auto;
-    }
+.banner img {
+	width: 100%;
+}
 
-    #banner-1{
-        height: auto;
-        padding-top: 100px;
-    }
 
-    #navbar {
-        width: 100%;
-        max-width: 500px;
-        float: none;
-        height: auto;
-        min-height: 60px;
-        margin-left: 0;
-        display: block;
-        left: 50%;
-        top: 0;
-        z-index: 99999;
-        background: transparent;
-        -webkit-transform: translateX(-50%);
-        -moz-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
-        -o-transform: translateX(-50%);
-        transform: translateX(-50%);
-    }
+/* ESTILO DO LOGIN */
 
-    #navbar .logo {
-        background: #313132 url(img/storm-logo.png) no-repeat center;
-        width: 100%;
-        height: 60px;
-        position: relative;
-        background-size: auto;
-        margin: 0;
-        display: block;
-    }
 
-    #menu {
-        display: none;
-        width: 100%;
-        max-width: 60%;
-        margin-left: auto;
-    }
+.cadastroUsuarios {
+    width: 377px;
+    margin: 0 auto;
+    position: relative;
+    top: 20px;
+    font-family: Wendy One;
+}
 
-    #menu li {
-        display: block;
-        text-align: center;
-    }
+.cadastroUsuarios a {
+    padding-left: 10px;
+    margin-top: 5px;
+}
 
-    #navbar .toggle-menu {
-        display: block;
-        position: absolute;
-        right: 15px;
-        top: 10px;
-        color: #fff;
-        text-decoration: none;
-        font-size: 28px;
-        font-weight: 300;
-        z-index: 2;
-    }
-
-    #navbar .g1 .g2, #navbar .address {
-        background: #313132;
-    }
-
-    #navbar .address{
-        color: #fff;
-        font-size: 14px;
-        padding-bottom: 10px;
-        text-align: left;
-        padding-left: 15px;
-        padding-top: 10px;
-    }
-
-    .g1 .g2 a {
-        margin: 0;
-    }
-
-    #banner-1 .slick-prev, #banner-1 .slick-next {
-        z-index: 999;
-        width: 60px;
-    }
-
-    #banner-1 .slick-next { right: 0; }
-    #banner-1 .slick-prev { left: 0; }
-
-    #negocios .content {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    #negocios .slider {
-        width: calc(100% - 90px);
-    }
-
-    #negocios .content .slick-prev, #negocios .content .slick-next {
-        width: 60px;
-        right: 0;
-    }
-
-    img {
-        max-width: 100%;
-    }
-
-    article.slick-slide{
-        padding: 10px;
-    }
-
-    #negocios .sidebar{
-        width: 100%;
-        display: block;
-        margin-top: 30px;
-        margin-bottom: 10px;
-        text-align: center;
-    }
-
-    #negocios .sidebar span{
-        text-align: center;
-        margin-bottom: 5px;
-    }
-
-    #banner-1 {
-        padding-top: 60px;
-        padding-bottom: 0;
-    }
+.login-position {
+    position: relative;
+    top: 120px;
+	width: 320px !important;
 }

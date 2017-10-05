@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<!-- LINK PARA A BIBLIOTECA JQUERY -->	
-		<script src="js/jquery-2.1.6.min.js" type="text/javascript"></script>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
 		
 		<!--LINK PARA O JQUERY MASKED INPUT -->
 	    <script src="js/jquery-maskedinput/src/jquery.maskedinput.js" type="text/javascript"></script>
@@ -16,38 +16,18 @@
 	    <script src="js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
 	    
 	    <!--LINK PARA O JQUERY-UI - CALENDÁRIO - Fonte: https://jqueryui.com/ -->    
-	    <link rel="stylesheet" href="../js/jquery-ui-1.11.6.custom/jquery-ui.css">
-	    <script src="js/jquery-ui-1.11.6.custom/jquery-ui.min.js" type="text/javascript"></script>
-	  	<script src="js/jquery-ui-1.11.6.custom/jquery-ui.js" type="text/javascript"></script>
+	    <link rel="stylesheet" href="../js/jquery-ui-1.11.4.custom/jquery-ui.css">
+	    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
+	  	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js" type="text/javascript"></script>
 
-		<!--<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha386-b/U6ypiBEHpOf/6+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj6"
-		crossorigin="anonymous"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script> -->
-
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css" 
-			integrity="sha386-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg6Va+PmSTsz/K68vbdEjh6u" crossorigin="anonymous">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" 
-			integrity="sha386-rHyoN1iRsVXV6nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js" 
-			integrity="sha386-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+		<link rel="stylesheet" href="estilo.css">
+		<link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
+		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		
 	</head>
 
 	<body>
-		<section class="container">
-			<div class="row">
-				<div class="jumbotron col-md-12 col-sm-12 bg-info">					
-						<h2 class="display-4">Cadastro do Veterinário</h2>					
-				</div>
-			</div>
-		</section>
-
 		<form id="formVeterinario" action="" method="post" >
 			<fieldset  class="container">
 				<legend class="control-label">Cadastro de Veterinário(a)</legend>
@@ -86,11 +66,17 @@
 
 					<div class="form-group col-md-12 col-sm-12">
 						<input type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-primary" value="Enviar">
+						<input type="button" id="btnLimpar" name="btnLimpar" class="btn btn-primary btlimpar" value="Limpar" />
+						<input type="button" id="btnVoltar" name="btnVoltar" class="btn btn-primary btvoltar" value="Voltar" />
 					</div>
 
 				</div>
 
 			</fieldset>
 		</form>
+
+
+		<script type="text/javascript" src="js/script.js"></script>
+		<script src="bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>
