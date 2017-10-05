@@ -1,36 +1,25 @@
 <!DOCTYPE html>
-
 <html>
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<!-- LINK PARA A BIBLIOTECA JQUERY -->	
-		<script src="js/jquery-2.1.4.min.js" type="text/javascript"></script>
-		
-		<!--LINK PARA O JQUERY MASKED INPUT -->
-	    <script src="js/jquery-maskedinput/src/jquery.maskedinput.js" type="text/javascript"></script>
+		<script src="resources/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+	    <script src="resources/js/jquery-maskedinput/src/jquery.maskedinput.js" type="text/javascript"></script>
+	    <script src="resources/js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
 	    
-	    <!--LINK PARA O JQUERY VALIDATION -->
-	    <script src="js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
-	    
-	    <!--LINK PARA O JQUERY-UI - CALENDÁRIO - Fonte: https://jqueryui.com/ -->    
-	    <link rel="stylesheet" href="../js/jquery-ui-1.11.4.custom/jquery-ui.css">
-	    <script src="js/jquery-ui-1.11.4.custom/jquery-ui.min.js" type="text/javascript"></script>
-	  	<script src="js/jquery-ui-1.11.4.custom/jquery-ui.js" type="text/javascript"></script>
-
-		<link rel="stylesheet" href="estilo.css">
+		<link rel="stylesheet" href="resources/css/estilo.css">
 		<link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
-		<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
 		
 	</head>
 
 	<body>
 		<form id="formVeterinario" action="" method="post" >
 			<fieldset  class="container">
-				<legend class="control-label">Cadastro de Veterinário(a)</legend>
+				<legend class="control-label">Cadastro de Veterin�rio(a)</legend>
 					
 				<div class="row">
 						
@@ -76,7 +65,7 @@
 		</form>
 
 
-		<script type="text/javascript" src="js/script.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="resources/js/script.js"></script>
+		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

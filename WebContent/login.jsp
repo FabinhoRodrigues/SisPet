@@ -3,24 +3,22 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="estilo.css">
+	<link rel="stylesheet" href="resources/estilo.css">
 	<link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
 	
 	<title>Login</title>
 </head>
 <body>
 	
 	<div class="cadastroUsuarios">
-	
-		<div class="position-dog-img">	
-		<div><img src="img/dog-img.png"></div>
-		Nao possui cadastro e Ã© veterinario?<a href="cadastroVeterinario.jsp">Clique aqui</a>		
+		<div>
+		Nao possui cadastro e é veterinário?<a href="cadastroVeterinario.html">Clique aqui</a>	
 		</div>
 	</div>
 	<div class="container login-position">
-		<form id="formLogin" class="form-login-position">
+		<form>
 			<div class="form-group">
 		    	<label for="login">Login:</label>
 		    	<input type="login" class="form-control" id="login">
@@ -36,7 +34,7 @@
 		</form>
 	</div>
 
-	<script type="text/javascript" src="js/script.js"></script>
-	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="resources/js/script.js"></script>
+	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>
