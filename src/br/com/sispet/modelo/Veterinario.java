@@ -1,4 +1,4 @@
-package br.uva.modelo;
+package br.com.sispet.modelo;
 
 public class Veterinario {
 
