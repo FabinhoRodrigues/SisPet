@@ -6,8 +6,10 @@ package br.com.sispet.modelo;
  */
 
 public class Veterinario {
+	
+	private long id;
 
-	private int cpf;
+	private String cpf;
 
 	private String usuario;
 
@@ -16,12 +18,14 @@ public class Veterinario {
 	private String nome;
 
 	private String sobrenome;
+	
+	private String telefone;
 
 	public Veterinario() {
 
 	}
 
-	public Veterinario(int cpf) {
+	public Veterinario(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -30,17 +34,26 @@ public class Veterinario {
 		this.senha = senha;
 	}
 
-	public Veterinario(String nome, String sobrenome, int cpf) {
+	public Veterinario(String nome, String sobrenome, String cpf, String telefone) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.cpf = cpf;
+		this.telefone = telefone;
+	}
+	
+	public long getId() {
+		return id;
 	}
 
-	public int getCpf() {
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -76,4 +89,12 @@ public class Veterinario {
 		this.sobrenome = sobrenome;
 	}
 
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
 }

@@ -17,7 +17,7 @@
 	</head>
 
 	<body>
-		<form id="formVeterinario" action="" method="post" >
+		<form id="formVeterinario" action="cadVeterinario" method="post" >
 			<fieldset  class="container">
 				<legend class="control-label">Cadastro de Veterinário(a)</legend>
 					

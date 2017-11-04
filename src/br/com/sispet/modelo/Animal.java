@@ -7,6 +7,8 @@ package br.com.sispet.modelo;
 */
 
 public class Animal {
+	
+	private long id;
 
 	private String nome;
 	
@@ -21,6 +23,14 @@ public class Animal {
 	private Integer peso;
 	
 	private String observacoes;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
