@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,9 +18,17 @@
 	</head>
 
 	<body>
+	
+	<hr>
+		<div id="mensagens">
+			${msg}
+		</div>
+	<hr>
+		<h1>Cadastro de VeterinÃ¡rio(a)</h1>
+	
 		<form id="formVeterinario" action="cadVeterinario" method="post" >
 			<fieldset  class="container">
-				<legend class="control-label">Cadastro de Veterinário(a)</legend>
+				<legend class="control-label">Login e Senha</legend>
 					
 				<div class="row">
 						
@@ -32,35 +41,43 @@
 						<label>Senha:</label>	
 						<input type="password" id="senhaVet" name="senhaVet" class="form-control" value=""/>
 					</div>
-
+				</div>
+				
+				<legend class="control-label">Dados Pessoais</legend>
+	
+				<div class="row">						
 					<div class="form-group col-md-6 col-sm-6">	
 						<label>Nome:</label>	
 						<input type="text" id="nomeVet" name="nomeVet" class="form-control" value=""/>
 					</div>
-
+		
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Email:</label>	
 						<input type="email" id="emailVet" name="emailVet" class="form-control" value=""/>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-6">
+						<label>Especialidade:</label>	
+						<input type="text" id="espVet" name="espVet" class="form-control" value=""/>
+					</div>
+	
+	
+					<div class="form-group col-md-6 col-sm-6">
 						<label>CPF:</label>	
 						<input type="text" id="cpfVet" name="cpfVet" class="form-control" value=""/>
 					</div>
-
+	
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Tel:</label>	
 						<input type="text" id="telVet" name="telVet" class="form-control" value=""/>
 					</div>
-
+					
 					<div class="form-group col-md-12 col-sm-12">
 						<input type="submit" id="btnEnviar" name="btnEnviar" class="btn btn-primary" value="Enviar">
 						<input type="button" id="btnLimpar" name="btnLimpar" class="btn btn-primary btlimpar" value="Limpar" />
 						<input type="button" id="btnVoltar" name="btnVoltar" class="btn btn-primary btvoltar" value="Voltar" />
 					</div>
-
 				</div>
-
 			</fieldset>
 		</form>
 

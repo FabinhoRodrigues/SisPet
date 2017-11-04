@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -54,12 +55,12 @@
 					</div>
 
 					<div class="form-group col-md-4 col-sm-4">
-						<label>Endereço:</label>	
+						<label>EndereÃ§o:</label>	
 						<input type="text" id="enderecoCliente" name="enderecoCliente" class="form-control" value=""/>
 					</div>			
 
 					<div class="form-group col-md-4 col-sm-4">
-						<label>Número:</label>	
+						<label>NÃºmero:</label>	
 						<input type="text" id="numeroEndCliente" name="numeroEndCliente" class="form-control" value=""/>
 					</div>
 
@@ -83,18 +84,18 @@
 						<label>Sexo:</label>	
 						<select id="sexoAnimal" name="sexoAnimal" class="form-control">
 							<option value="">Selecione</option>
-							<option value="F">Fêmea</option>
+							<option value="F">FÃªmea</option>
 							<option value="M">Macho</option>
 						</select>
 					</div>
 
 					<div class="form-group col-md-4 col-sm-4">
-						<label>Espécie:</label>	
+						<label>EspÃ©cie:</label>	
 						<input type="text" id="especieAnimal" name="especieAnimal" class="form-control" value=""/>
 					</div>
 
 					<div class="form-group col-md-4 col-sm-4">
-						<label>Raça:</label>	
+						<label>RaÃ§a:</label>	
 						<input type="text" id="racaAnimal" name="racaAnimal" class="form-control" value=""/>
 					</div>
 
@@ -109,7 +110,7 @@
 					</div>
 
 					<div class="form-group col-md-12 col-sm-12">
-						<label>Observações:</label>	
+						<label>ObservaÃ§Ãµes:</label>	
 						<textarea id="observacoesAnimal" name="observacoesAnimal" class="form-control" ></textarea>
 					</div>
 

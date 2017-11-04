@@ -10,70 +10,77 @@ import java.util.List;
 
 import br.com.sispet.factory.ConnectionFactory;
 import br.com.sispet.modelo.Veterinario;
+import br.com.sispet.utils.Utils;
 
 /**
  *
  * @author gabriel.almeida
  */
 public class VeterinarioDAO {
-//	private String jdbcURL;
-//	private String jdbcUserName;
-//	private String jdbcPassword;
 	
 	private Connection conexao;
 
-//	public VeterinarioDAO(String jdbcURL, String jdbcUserName, String jdbcPassword) {
-//		this.jdbcURL = jdbcURL;
-//		this.jdbcUserName = jdbcUserName;
-//		this.jdbcPassword = jdbcPassword;
-//		this.jdbcConnection = jdbcConnection;
-//	}
-
-//	protected void connect() throws SQLException {
-//		if (jdbcConnection == null || jdbcConnection.isClosed()) {
-//			try {
-//				Class.forName("com.mysql.jdbc.Driver");
-//			} catch (ClassNotFoundException e) {
-//				throw new SQLException(e);
-//			}
-//			jdbcConnection = (Connection) DriverManager.getConnection(jdbcURL, jdbcUserName, jdbcPassword);
-//		}
-//	}
-
-//	protected void disconnect() throws SQLException {
-//		if (jdbcConnection != null && !jdbcConnection.isClosed()) {
-//			jdbcConnection.close();
-//		}
-//	}
-
 	public boolean insereVeterinario(Veterinario veterinario) {
-		
+		PreparedStatement ps = null;
+		boolean sucesso = false;
 		try{
 			conexao = new ConnectionFactory().getConnection();
 			
-			String sql = "INSERT INTO veterinario(nome, sobrenome, cpf, usuario, senha) VALUES (?, ?, ?, ?, ?)";
-	
-			PreparedStatement statement = conexao.prepareStatement(sql);
-			statement.setString(1, veterinario.getNome());
-			statement.setString(2, veterinario.getSobrenome());
-			statement.setString(3, veterinario.getCpf());
-			statement.setString(4, veterinario.getUsuario());
-			statement.setString(5, veterinario.getSenha());
-	
-			boolean rowInserted = statement.executeUpdate() > 0;
-			statement.close();
-	
-			return rowInserted;
-		} catch(SQLException e){
+			conexao.setAutoCommit(false);
 			
+			String sql = "INSERT INTO usuario(nome, usuario, senha, perfil, data_cadastro) VALUES (?, ?, ?, ?, ?)";
+			ps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			ps.setString(1, veterinario.getNome());
+			ps.setString(2, veterinario.getUsuario());
+			ps.setString(3, Utils.criptografarSenha(veterinario.getSenha()));
+			ps.setString(4, "VET");
+			String dataCadastro = Utils.getDataHoraCorrente(); 
+			ps.setString(5, dataCadastro);
+			
+			ps.execute();
+			sucesso = true;
+			
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id_usuario = rs.getInt(1);
+			rs.close();
+			
+			sql = "INSERT INTO veterinario(id_usuario, email, especialidade, cpf, telefone) VALUES (?, ?, ?, ?, ?)";
+	
+			ps = conexao.prepareStatement(sql);
+			ps.setLong(1, id_usuario);
+			ps.setString(2, veterinario.getEmail());
+			ps.setString(3, veterinario.getEspecialidade());
+			ps.setString(4, veterinario.getCpf());
+			ps.setString(5, veterinario.getTelefone());
+			
+			ps.execute();
+			sucesso = true;
+			
+			conexao.commit();
+	
+			return sucesso;
+		} catch(SQLException e){
+			System.out.println("Erro ao cadastrar o veterinario.");
+			if (conexao != null){
+				try { 
+					System.out.println("Rollback efetuado na transação");
+					conexao.rollback();
+					sucesso = false;
+					System.out.println("Código de Erro: " + e.getErrorCode() + "  Mensagem de Erro =  " + e.getMessage());
+				} catch(SQLException e2) {
+					System.err.print("Erro na transação!" + e2); 
+				} 
+			}
 		} finally {
 			try {
+				ps.close();
 				conexao.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return sucesso;
 	}
 
 	public List<Veterinario> listaTodosVeterinarios() throws SQLException {
@@ -91,13 +98,11 @@ public class VeterinarioDAO {
 			List<Veterinario> listaVeterinario = new ArrayList<>();
 			while (resultSet.next()) {
 				String nome = resultSet.getString("nome");
-				String sobrenome = resultSet.getString("sobrenome");
 				String cpf = resultSet.getString("cpf");
 	
 //				Veterinario veterinario = new Veterinario(nome, sobrenome, cpf);
 				Veterinario veterinario = new Veterinario();
 				veterinario.setNome(nome);
-				veterinario.setSobrenome(sobrenome);
 				veterinario.setCpf(cpf);
 				listaVeterinario.add(veterinario);
 			}
@@ -143,7 +148,6 @@ public class VeterinarioDAO {
 	
 			PreparedStatement statement = conexao.prepareStatement(sql);
 			statement.setString(1, veterinario.getNome());
-			statement.setString(2, veterinario.getSobrenome());
 	
 			boolean rowUpdate = statement.executeUpdate() > 0;
 			statement.close();
