@@ -295,6 +295,11 @@ article.form , address {
 
 .login-position {
     position: relative;
-    top: 120px;
+    top: 40px;
 	width: 320px !important;
 }
+
+.msg {
+	margin: 15px 40px 0px;	
+}
+

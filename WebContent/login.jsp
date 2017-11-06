@@ -12,6 +12,10 @@
 </head>
 <body>
 	
+	<div id="mensagens" class="msg">
+		${msg}
+	</div>
+	
 	<div class="cadastroUsuarios">
 	
 		<div class="position-dog-img">	
@@ -19,15 +23,16 @@
 		Nao possui cadastro e é veterinário?<a href="cadastroVeterinario.jsp">Clique aqui</a>	
 		</div>
 	</div>
+	
 	<div class="container login-position">
-		<form>
+		<form name="formLogin" action="login" method="post">
 			<div class="form-group">
 		    	<label for="login">Login:</label>
-		    	<input type="login" class="form-control" id="login">
+		    	<input type="login" class="form-control" name="login" id="login">
 		  	</div>
 		  	<div class="form-group">
 			    <label for="pwd">Senha:</label>
-			    <input type="password" class="form-control" id="pwd">
+			    <input type="password" class="form-control" name="senha" id="pwd">
 			</div>
 			<div class="checkbox">
 		    	<label><input type="checkbox">Remember me</label>

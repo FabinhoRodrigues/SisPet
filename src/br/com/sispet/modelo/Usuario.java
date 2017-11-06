@@ -2,13 +2,15 @@ package br.com.sispet.modelo;
 
 public class Usuario {
 
-	private long id;
+	protected long id;
 
-	private String nome;
+	protected String nome;
 
-	private String usuario;
+	protected String usuario;
 
-	private String senha;
+	protected String senha;
+	
+	protected String perfil;
 
 	public long getId() {
 		return id;
@@ -40,6 +42,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 }

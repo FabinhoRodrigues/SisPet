@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -16,17 +17,22 @@
 		<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
 		
 	</head>
-
 	<body>
 	
-	<hr>
-		<div id="mensagens">
+		<c:set var="url" value="cadVeterinario" />
+		
+		<c:if test="${op eq 'C'}">
+			<c:set var="url" value="altVeterinario" />
+			<!--<c:set var="btenviar" value="Alterar Cliente" />-->
+		</c:if>
+		
+		<div id="mensagens" class="msg">
 			${msg}
 		</div>
-	<hr>
+			
 		<h1>Cadastro de Veterinário(a)</h1>
 	
-		<form id="formVeterinario" action="cadVeterinario" method="post" >
+		<form id="formVeterinario" action="${url}" method="post" >
 			<fieldset  class="container">
 				<legend class="control-label">Login e Senha</legend>
 					
@@ -34,12 +40,12 @@
 						
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Login:</label>	
-						<input type="text" id="loginVet" name="loginVet" class="form-control" value=""/>
+						<input type="text" id="loginVet" name="loginVet" class="form-control" value="${vet.login}"/>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Senha:</label>	
-						<input type="password" id="senhaVet" name="senhaVet" class="form-control" value=""/>
+						<input type="password" id="senhaVet" name="senhaVet" class="form-control" value="${vet.senha}"/>
 					</div>
 				</div>
 				
@@ -47,29 +53,29 @@
 	
 				<div class="row">						
 					<div class="form-group col-md-6 col-sm-6">	
-						<label>Nome:</label>	
-						<input type="text" id="nomeVet" name="nomeVet" class="form-control" value=""/>
+						<label>Nome Completo:</label>	
+						<input type="text" id="nomeVet" name="nomeVet" class="form-control" value="${vet.nome}"/>
 					</div>
 		
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Email:</label>	
-						<input type="email" id="emailVet" name="emailVet" class="form-control" value=""/>
+						<input type="email" id="emailVet" name="emailVet" class="form-control" value="${vet.email}"/>
 					</div>
 
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Especialidade:</label>	
-						<input type="text" id="espVet" name="espVet" class="form-control" value=""/>
+						<input type="text" id="espVet" name="espVet" class="form-control" value="${vet.especialidade}"/>
 					</div>
 	
 	
 					<div class="form-group col-md-6 col-sm-6">
 						<label>CPF:</label>	
-						<input type="text" id="cpfVet" name="cpfVet" class="form-control" value=""/>
+						<input type="text" id="cpfVet" name="cpfVet" class="form-control" value="${vet.cpf}"/>
 					</div>
 	
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Tel:</label>	
-						<input type="text" id="telVet" name="telVet" class="form-control" value=""/>
+						<input type="text" id="telVet" name="telVet" class="form-control" value="${vet.telefone}"/>
 					</div>
 					
 					<div class="form-group col-md-12 col-sm-12">
@@ -80,7 +86,6 @@
 				</div>
 			</fieldset>
 		</form>
-
 
 		<script type="text/javascript" src="resources/js/script.js"></script>
 		<script src="resources/bootstrap/js/bootstrap.min.js"></script>

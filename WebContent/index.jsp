@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 	<html>
 		<head>
@@ -18,7 +20,7 @@
 		    <script src="resources/js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
 
 		</head>
-			<body>
+		<body>
 				
 				<div class="login" >
 					<i class="fa fa-sign-in" aria-hidden="true"></i>
@@ -31,7 +33,7 @@
 						<ul class="g1" id="menu">
 							<li class="g2"><a href="#negocios">Conheça a Sispet</a></li>
 
-							<li class="g2"><a href="cadastroCliente.jsp">Clientes</a>
+							<li class="g2"><a href="sistema/cadastroCliente.jsp">Clientes</a>
 
 							<li class="g2"><a href="#rodape">Faça Contato</a></li>	
 						</ul>
@@ -46,7 +48,7 @@
 				<div><img class="position-banner02" src="resources/img/banner2.png"></div>				
 			</div>
 
-			<!-- BANNER DESCRIÇÃO -->
+			<!-- BANNER DESCRIÃÃO -->
 
 			<section id="negocios">
 				<div class="container">
@@ -70,8 +72,8 @@
 						<span class="bd left"></span>
 						<span class="bd right"></span>
 						<span class="bd bottom"></span>
-						Envie-nos uma solicitação, dúvida, sugestão ou crítica.<br>
-						 Nossa equipe responderá o contato o quanto antes
+						Envie-nos uma solicitaÃ§Ã£o, dÃºvida, sugestÃ£o ou crÃ­tica.<br>
+						 Nossa equipe responderÃ¡ o contato o quanto antes
 					</header>
 					
 

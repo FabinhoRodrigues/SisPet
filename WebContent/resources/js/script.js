@@ -90,7 +90,7 @@ $(document).ready(function(){
 	
 	/* Ação do botão voltar */
     $(".btvoltar").click(function(){
-		window.location.href='index.html';
+		window.location.href='index.jsp';
 	});
 	
 

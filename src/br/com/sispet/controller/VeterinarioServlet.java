@@ -58,8 +58,9 @@ public class VeterinarioServlet extends HttpServlet {
 				msg = "<div class='alert alert-danger'>Erro ao fazer o cadastro</div>";
 			}
 			
+			
 			req.setAttribute("msg", msg);
-			req.getRequestDispatcher("cadastroVeterinario.jsp").forward(req, resp);
+			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}

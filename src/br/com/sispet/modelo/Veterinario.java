@@ -14,6 +14,8 @@ public class Veterinario extends Usuario {
 	private String cpf;
 
 	private String telefone;
+	
+	private long id_usuario;
 
 	public Veterinario() {
 
@@ -49,6 +51,14 @@ public class Veterinario extends Usuario {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
+	}
+
+	public long getId_usuario() {
+		return id_usuario;
+	}
+
+	public void setId_usuario(long id_usuario) {
+		this.id_usuario = id_usuario;
 	}
 
 }
