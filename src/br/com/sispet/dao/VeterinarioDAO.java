@@ -139,28 +139,6 @@ public class VeterinarioDAO {
 		return false;
 	}
 
-	public boolean updateVeterinario(Veterinario veterinario) throws SQLException {
-		try{
-			conexao = new ConnectionFactory().getConnection();
-			
-			String sql = "UPDATE veterinario SET nome=?, sobrenome=?";
-			sql += "WHERE cpf = ?";
-	
-			PreparedStatement statement = conexao.prepareStatement(sql);
-			statement.setString(1, veterinario.getNome());
-	
-			boolean rowUpdate = statement.executeUpdate() > 0;
-			statement.close();
-
-			return rowUpdate;
-		} catch(SQLException e){
-			
-		} finally {
-			conexao.close();
-		}
-		return false;
-	}
-
 	public Veterinario getVeterinario(int id) {
 		try{
 			conexao = new ConnectionFactory().getConnection();
@@ -179,6 +157,62 @@ public class VeterinarioDAO {
 		
 
 		return null;
+	}
+
+	public boolean alterarVeterinario(Veterinario veterinario) {
+		PreparedStatement ps = null;
+		boolean sucesso = false;
+
+		try{
+			conexao = new ConnectionFactory().getConnection();
+			conexao.setAutoCommit(false);
+			
+			String sql = "UPDATE usuario SET nome = ?, usuario = ?, senha = ? WHERE id = ?";
+			ps = conexao.prepareStatement(sql);
+			ps.setString(1, veterinario.getNome());
+			ps.setString(2, veterinario.getUsuario());
+			ps.setString(3, Utils.criptografarSenha(veterinario.getSenha()));
+			ps.setLong(4, veterinario.getId());
+			
+			ps.execute();
+			sucesso = true;
+			
+			sql = "UPDATE veterinario SET email = ?, especialidade = ?, cpf = ?, telefone = ? WHERE = id_usuario = ?";
+	
+			ps = conexao.prepareStatement(sql);
+			ps.setString(1, veterinario.getEmail());
+			ps.setString(2, veterinario.getEspecialidade());
+			ps.setString(3, veterinario.getCpf());
+			ps.setString(4, veterinario.getTelefone());
+			ps.setLong(5, veterinario.getId());
+			
+			ps.execute();
+			sucesso = true;
+
+			conexao.commit();
+	
+			return sucesso;
+		} catch(SQLException e){
+			System.out.println("Erro ao alterar o veterinario.");
+			if (conexao != null){
+				try { 
+					System.out.println("Rollback efetuado na transação");
+					conexao.rollback();
+					sucesso = false;
+					System.out.println("Código de Erro: " + e.getErrorCode() + "  Mensagem de Erro =  " + e.getMessage());
+				} catch(SQLException e2) {
+					System.err.print("Erro na transação!" + e2); 
+				} 
+			}
+		} finally {
+			try {
+				ps.close();
+				conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return sucesso;
 	}
 
 }

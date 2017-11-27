@@ -12,11 +12,10 @@ create table usuario(
 );
 
 create table veterinario(
-	id bigint primary key AUTO_INCREMENT,
 	id_usuario bigint,
+	cpf varchar(14) primary key,
 	email varchar(80) not null,
 	especialidade varchar(20),
-	cpf varchar(14) not null,
 	telefone varchar(15),
 
 	foreign key(id_usuario) references usuario(id)
