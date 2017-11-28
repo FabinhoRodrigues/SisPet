@@ -12,8 +12,8 @@ create table usuario(
 );
 
 create table veterinario(
-	id_usuario bigint,
-	cpf varchar(14) primary key,
+	id_usuario bigint primary key,
+	cpf varchar(14),
 	email varchar(80) not null,
 	especialidade varchar(20),
 	telefone varchar(15),
@@ -33,7 +33,7 @@ create table cliente(
 	numero int not null ,
 	complemento varchar(20),
 
-	foreign key(id_veterinario) references veterinario(id)
+	foreign key(id_veterinario) references veterinario(id_usuario)
 );
 
 create table animal(
@@ -56,11 +56,3 @@ create table rc_vet_animal(
 	id_veterinario bigint,
 	id_animal bigint
 )
-
-
-
-
-
-
-
-

@@ -1,5 +1,7 @@
 package br.com.sispet.modelo;
 
+import java.util.List;
+
 /**
 *
 * @author Vinicius Gonçalves
@@ -25,6 +27,8 @@ public class Cliente {
 	private Integer numero;
 	
 	private String complemento;
+	
+	private List<Animal> animais;
 
 	public long getId() {
 		return id;
@@ -96,6 +100,14 @@ public class Cliente {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
+	}
+
+	public List<Animal> getAnimais() {
+		return animais;
+	}
+
+	public void setAnimais(List<Animal> animais) {
+		this.animais = animais;
 	}
 
 }

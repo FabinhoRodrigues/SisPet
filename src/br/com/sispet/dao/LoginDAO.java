@@ -39,7 +39,7 @@ public class LoginDAO {
 			
 			if("VET".equals(usuario.getPerfil())){
 				
-				sql = "SELECT v.id as id, v.email as email, v.telefone as tel, v.especialidade as esp, v.cpf as cpf "
+				sql = "SELECT v.email as email, v.telefone as tel, v.especialidade as esp, v.cpf as cpf "
 						+ "FROM usuario u JOIN veterinario v ON u.id = v.id_usuario WHERE id_usuario = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setLong(1, usuario.getId());
@@ -53,7 +53,6 @@ public class LoginDAO {
 				vet.setPerfil(usuario.getPerfil());
 				vet.setId_usuario(usuario.getId());
 
-				vet.setId(rs.getLong("id"));
 				vet.setEmail(rs.getString("email"));
 				vet.setTelefone(rs.getString("tel"));
 				vet.setEspecialidade(rs.getString("esp"));
