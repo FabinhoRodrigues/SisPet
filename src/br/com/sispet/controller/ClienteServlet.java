@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.com.sispet.dao.AnimalDAO;
 import br.com.sispet.dao.ClienteDAO;
 import br.com.sispet.modelo.Animal;
 import br.com.sispet.modelo.Cliente;
+import br.com.sispet.modelo.FiltroDeConsultaAnimal;
+import br.com.sispet.modelo.FiltroDeConsultaCliente;
 
 @WebServlet({"/listarCliente"})
 public class ClienteServlet extends HttpServlet{
@@ -34,7 +37,7 @@ public class ClienteServlet extends HttpServlet{
 		
 		/* Cliente */	
 		String nomeCliente = req.getParameter("nomeCliente");
-		String emailCliente = req.getParameter("nomeEmail");
+		String emailCliente = req.getParameter("emailCliente");
 		String sexoCliente = req.getParameter("sexoCliente");
 		String cpf = req.getParameter("cpfCliente");
 		String tel = req.getParameter("telCliente");
@@ -80,34 +83,61 @@ public class ClienteServlet extends HttpServlet{
 		} else if(url.equalsIgnoreCase("/altVeterinario")){
 			//alterar(req, resp, cliente);
 		} else if(url.equalsIgnoreCase("/listarCliente")){
-			listar(req, resp, cliente, flagBusca);
+			
+			if("C".equals(flagBusca)){
+				FiltroDeConsultaCliente filtroCliente = new FiltroDeConsultaCliente();
+				filtroCliente.setNome(nomeCliente);
+				filtroCliente.setEmail(emailCliente);
+				filtroCliente.setSexo(sexoCliente);
+				filtroCliente.setCpf(cpf);
+	        
+				listarCliente(req, resp, filtroCliente);
+			} else if("A".equals(flagBusca)){
+				FiltroDeConsultaAnimal filtroAnimal = new FiltroDeConsultaAnimal();
+				filtroAnimal.setNome(nomeAnimal);
+				filtroAnimal.setSexo(sexoCliente);
+				filtroAnimal.setEspecie(especie);
+				filtroAnimal.setRaca(raca);
+				filtroAnimal.setIdade(StringUtils.isNotBlank(idade) ? Integer.parseInt(idade) : null);
+				
+				listarAnimal(req, resp, filtroAnimal, flagBusca);
+	        }
+			
+			
 		} 
 	}
 
-	private void listar(HttpServletRequest req, HttpServletResponse resp, Cliente cliente, String flagBusca) {
+	private void listarCliente(HttpServletRequest req, HttpServletResponse resp, FiltroDeConsultaCliente filtroCliente) {
 		try {
 			ClienteDAO dao = new ClienteDAO();
-			List<Cliente> clientes = dao.listar(cliente);
+			List<Cliente> clientes = dao.listar(filtroCliente);
 
-			if(clientes == null){
-//				msg = "<div class='alert alert-success'>Edição efetuada com sucesso!</div>";
-//				Mensagem de que não foi encontrado nenhum cliente.
+			if(clientes.isEmpty()){
+				String msg = "<div class='alert alert-success'>Nenhum registro foi encontrado.</div>";
+				req.setAttribute("msg", msg);
+				req.setAttribute("fc", filtroCliente);
 			}
 			
-	        if("C".equals(flagBusca)){
-	        	req.setAttribute("clientes", clientes);
-	        } else if("A".equals(flagBusca)){
-	        	List<Animal> animais = new ArrayList<>();
-	        	for(Cliente c : clientes){
-	        		for(Animal a : c.getAnimais()){
-	        			animais.add(a);
-	        		}
-	        	}
-	        	req.setAttribute("animais", animais);
-	        }
-	        
-//			req.setAttribute("msg", msg);
-			req.setAttribute("flag", flagBusca);
+	        req.setAttribute("clientes", clientes);
+			req.getRequestDispatcher("registrosDeClientes.jsp").forward(req, resp);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void listarAnimal(HttpServletRequest req, HttpServletResponse resp, FiltroDeConsultaAnimal filtroAnimal, String flagBusca) {
+		try {
+			AnimalDAO dao = new AnimalDAO();
+			List<Animal> animais = dao.listar(filtroAnimal);
+
+			if(animais.isEmpty()){
+				String msg = "<div class='alert alert-success'>Nenhum registro foi encontrado.</div>";
+				req.setAttribute("msg", msg);
+				req.setAttribute("fa", filtroAnimal);
+			}
+			
+			req.setAttribute("flagBusca", flagBusca);
+        	req.setAttribute("animais", animais);
 			req.getRequestDispatcher("registrosDeClientes.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();

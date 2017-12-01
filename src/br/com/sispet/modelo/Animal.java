@@ -9,6 +9,8 @@ package br.com.sispet.modelo;
 public class Animal {
 	
 	private long id;
+	
+	private long id_cliente;
 
 	private String nome;
 	
@@ -30,6 +32,14 @@ public class Animal {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public long getId_cliente() {
+		return id_cliente;
+	}
+
+	public void setId_cliente(long id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 	public String getNome() {

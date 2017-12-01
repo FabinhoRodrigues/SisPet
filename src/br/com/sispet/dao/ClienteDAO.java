@@ -12,12 +12,15 @@ import org.apache.commons.lang3.StringUtils;
 import br.com.sispet.factory.ConnectionFactory;
 import br.com.sispet.modelo.Animal;
 import br.com.sispet.modelo.Cliente;
+import br.com.sispet.modelo.FiltroDeConsulta;
+import br.com.sispet.modelo.FiltroDeConsultaAnimal;
+import br.com.sispet.modelo.FiltroDeConsultaCliente;
 
 public class ClienteDAO {
 
 	private Connection conexao;
 
-	public List<Cliente> listar(Cliente cliente) {
+	public List<Cliente> listar(FiltroDeConsultaCliente filtro) {
 		
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -26,7 +29,7 @@ public class ClienteDAO {
 			
 			String sql = "SELECT * FROM cliente WHERE 1 = 1 ";
 			
-			String queryFinal = montaWhereDinamicoCliente(cliente, sql);
+			String queryFinal = montaWhereDinamicoCliente(filtro, sql);
 			
 			ps = conexao.prepareStatement(queryFinal);
 			rs = ps.executeQuery();
@@ -47,33 +50,6 @@ public class ClienteDAO {
 				clientes.add(c);
 			}
 			
-			for(Cliente cli : clientes){
-				
-				String sqlAnimal = "SELECT * FROM animal WHERE 1 = 1 AND id_cliente = ? ";
-				
-				String queryFinalAnimal = montaWhereDinamicoAnimal(cliente, sqlAnimal);
-				
-				ps = conexao.prepareStatement(queryFinalAnimal);
-				ps.setLong(1, cli.getId());
-				rs = ps.executeQuery();
-				
-				List<Animal> animais = new ArrayList<>();
-				while(rs.next()){
-					Animal a = new Animal();
-					a.setId(rs.getLong("id"));
-					a.setNome(rs.getString("nome"));
-					a.setSexo(rs.getString("sexo"));
-					a.setEspecie(rs.getString("especie"));
-					a.setRaca(rs.getString("raca"));
-					a.setIdade(rs.getInt("idade"));
-					a.setPeso(rs.getInt("peso"));
-					a.setObservacoes(rs.getString("observacoes"));
-					
-					animais.add(a);
-				}
-				cli.setAnimais(animais);
-			}
-			
 			return clientes;
 			
 		} catch(SQLException e){
@@ -90,43 +66,21 @@ public class ClienteDAO {
 		return null;
 	}
 
-	private String montaWhereDinamicoAnimal(Cliente cliente, String sql) {
-		StringBuilder query = new StringBuilder(sql);
-		
-		if(StringUtils.isNotBlank(cliente.getAnimais().get(0).getNome())){
-			query.append("AND nome like '%").append(cliente.getAnimais().get(0).getNome()).append("%'");
-		} 
-		if(StringUtils.isNotBlank(cliente.getAnimais().get(0).getSexo())){
-			query.append("AND sexo = ").append(cliente.getAnimais().get(0).getSexo());
-		} 
-		if(StringUtils.isNotBlank(cliente.getAnimais().get(0).getEspecie())){
-			query.append("AND especie like '%").append(cliente.getAnimais().get(0).getEspecie()).append("%'");
-		} 
-		if(StringUtils.isNotBlank(cliente.getAnimais().get(0).getRaca())){
-			query.append("AND raca like '%").append(cliente.getAnimais().get(0).getRaca()).append("%'");
-		} 
-		if(cliente.getAnimais().get(0).getIdade() != null){
-			query.append("AND idade like '%").append(cliente.getAnimais().get(0).getIdade()).append("%'");
-		} 
-		
-		return query.toString();
-	}
-
-	public String montaWhereDinamicoCliente(Cliente cliente, String sql) {
+	public String montaWhereDinamicoCliente(FiltroDeConsultaCliente filtro, String sql) {
 		
 		StringBuilder query = new StringBuilder(sql);
 	
-		if(StringUtils.isNotBlank(cliente.getNome())){
-			query.append("AND c.nome like '%").append(cliente.getNome()).append("%'");
+		if(StringUtils.isNotBlank(filtro.getNome())){
+			query.append("AND nome like '%").append(filtro.getNome()).append("%'");
 		} 
-		if(StringUtils.isNotBlank(cliente.getEmail())){
-			query.append("AND c.email like '%").append(cliente.getEmail()).append("%'");
+		if(StringUtils.isNotBlank(filtro.getEmail())){
+			query.append("AND email like '%").append(filtro.getEmail()).append("%'");
 		} 
-		if(StringUtils.isNotBlank(cliente.getSexo())){
-			query.append("AND c.sexo = ").append(cliente.getSexo());
+		if(StringUtils.isNotBlank(filtro.getSexo())){
+			query.append("AND sexo = ").append(filtro.getSexo());
 		} 
-		if(StringUtils.isNotBlank(cliente.getCpf())){
-			query.append("AND c.cpf like '%").append(cliente.getCpf()).append("%'");
+		if(StringUtils.isNotBlank(filtro.getCpf())){
+			query.append("AND cpf like '%").append(filtro.getCpf()).append("%'");
 		} 
 		
 		return query.toString();

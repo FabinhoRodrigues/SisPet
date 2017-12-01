@@ -27,7 +27,6 @@ $(document).ready(function() {
 	$("#animal").hide();
 	$("#tableAnimal").hide();
 	
-	
 	$("#tabCliente").click(function(){
 		$("#cliente").show();
 		$("#animal").hide();
@@ -37,6 +36,7 @@ $(document).ready(function() {
 		
 		$("#tableCliente").show();
 		$("#tableAnimal").hide();
+		
 	});
 	
 	$("#tabAnimal").click(function(){
@@ -48,6 +48,7 @@ $(document).ready(function() {
 		
 		$("#tableAnimal").show();
 		$("#tableCliente").hide();
+		
 	});
 	
 	$("#btnPesquisar").click(function(){ 
@@ -77,12 +78,12 @@ $(document).ready(function() {
 					<div class="row">
 						<div class="form-group col-md-6 col-sm-6">
 							<label>Nome:</label>	
-							<input type="text" id="nomeCliente" name="nomeCliente" class="form-control" value=""/>
+							<input type="text" id="nomeCliente" name="nomeCliente" class="form-control" value="${fc.nome}"/>
 						</div>
 				
 						<div class="form-group col-md-6 col-sm-6">
 							<label>Email:</label>	
-							<input type="email" id="emailCliente" name="emailCliente" class="form-control" value=""/>
+							<input type="email" id="emailCliente" name="emailCliente" class="form-control" value="${fc.email}"/>
 						</div>
 				
 						<div class="form-group col-md-4 col-sm-4">
@@ -96,7 +97,7 @@ $(document).ready(function() {
 									
 						<div class="form-group col-md-4 col-sm-4">
 							<label>CPF:</label>	
-							<input type="text" id="cpfCliente" name="cpfCliente" class="form-control" value=""/>
+							<input type="text" id="cpfCliente" name="cpfCliente" class="form-control" value="${fc.cpf}"/>
 						</div>
 				
 						<!-- 
@@ -128,7 +129,7 @@ $(document).ready(function() {
 									
 						<div class="form-group col-md-4 col-sm-4">
 							<label>Nome:</label>	
-							<input type="text" id="nomeAnimal" name="nomeAnimal" class="form-control" value=""/>
+							<input type="text" id="nomeAnimal" name="nomeAnimal" class="form-control" value="${fa.nome}"/>
 						</div>
 				
 						<div class="form-group col-md-4 col-sm-4">
@@ -142,17 +143,17 @@ $(document).ready(function() {
 				
 						<div class="form-group col-md-4 col-sm-4">
 							<label>Espécie:</label>	
-							<input type="text" id="especieAnimal" name="especieAnimal" class="form-control" value=""/>
+							<input type="text" id="especieAnimal" name="especieAnimal" class="form-control" value="${fa.especie}"/>
 						</div>
 				
 						<div class="form-group col-md-4 col-sm-4">
 							<label>Raça:</label>	
-							<input type="text" id="racaAnimal" name="racaAnimal" class="form-control" value=""/>
+							<input type="text" id="racaAnimal" name="racaAnimal" class="form-control" value="${fa.raca}"/>
 						</div>
 				
 						<div class="form-group col-md-4 col-sm-4">
 							<label>Idade:</label>	
-							<input type="text" id="idadeAnimal" name="idadeAnimal" class="form-control" value=""/>
+							<input type="text" id="idadeAnimal" name="idadeAnimal" class="form-control" value="${fa.idade}"/>
 						</div>
 							<!-- 
 						<div class="form-group col-md-4 col-sm-4">
@@ -177,6 +178,10 @@ $(document).ready(function() {
 				</div>
 			</fieldset>
 		</form>
+	</div>
+	
+	<div id="mensagens" class="msg">
+		${msg}
 	</div>
 	
 	<c:if test="${(not empty clientes)}">
