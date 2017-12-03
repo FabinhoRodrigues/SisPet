@@ -65,15 +65,17 @@ $(document).ready(function() {
 </head>
 <body>
 	
-	<ul class="nav nav-tabs" style="width: 60%;	margin: 2% 0 1% 20%;">
-   		<li class="active"><a data-toggle="tab" id="tabCliente" href="#cliente">Cliente</a></li>
-	    <li class=""><a data-toggle="tab" id="tabAnimal" href="#animal">Animal</a></li>
- 	</ul>
-	
+		
 	<div class="tab-content">
 		<form id="formCliente" name="formCliente" action="listarCliente" method="post" >
 			<input type="hidden" name="flagBusca" id="flagBusca" />
 		    <fieldset class="container"> 
+			    
+				<ul class="nav nav-tabs" style="margin: 3% 0 3% 0;">
+			   		<li class="active"><a data-toggle="tab" id="tabCliente" href="#cliente">Cliente</a></li>
+				    <li class=""><a data-toggle="tab" id="tabAnimal" href="#animal">Animal</a></li>
+			 	</ul>
+		    
 			    <div id="cliente" class="tab-pane fade in active">
 					<div class="row">
 						<div class="form-group col-md-6 col-sm-6">

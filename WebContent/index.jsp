@@ -18,14 +18,29 @@
 			<script src="resources/js/jquery-2.1.4.min.js" type="text/javascript"></script>
 		    <script src="resources/js/jquery-maskedinput/src/jquery.maskedinput.js" type="text/javascript"></script>
 		    <script src="resources/js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
+		    
+		    <%@page import="br.com.sispet.modelo.Usuario"%>
 
 		</head>
 		<body>
-				
-				<div class="login" >
-					<i class="fa fa-sign-in" aria-hidden="true"></i>
-					<a href="login.jsp">Login ou cadastre-se</a>
-				</div>
+			
+			<% HttpSession s = request.getSession(false); 
+			   Usuario usuario = (Usuario) s.getAttribute("usuarioLogado"); %>
+
+			<c:choose>
+				<c:when test="${usuario != null}">
+					<div class="login" >
+						<p>Seja Bem-vindo(a), ${usuario.nome}</p>
+					</div>
+				</c:when>
+				<c:otherwise>
+					<div class="login" >
+						<i class="fa fa-sign-in" aria-hidden="true"></i>
+						<a href="login.jsp">Login ou cadastre-se</a>
+					</div>
+				</c:otherwise>
+			</c:choose>
+			
 			<!-- NAVBAR -->
 
 			<nav id="navbar">
@@ -34,6 +49,8 @@
 							<li class="g2"><a href="#negocios">Conheça a Sispet</a></li>
 
 							<li class="g2"><a href="sistema/cadastroCliente.jsp">Clientes</a>
+							
+							<li class="g2"><a href="registrosDeClientes.jsp">Registros</a></li>	
 
 							<li class="g2"><a href="#rodape">Faça Contato</a></li>	
 						</ul>
@@ -42,7 +59,7 @@
 
 
 		  <!-- BANNER -->
-
+			
 			<div class="banner">
 				<div><img src="resources/img/main-banner.jpg"></div>
 				<div><img class="position-banner02" src="resources/img/banner2.png"></div>				
@@ -72,32 +89,30 @@
 						<span class="bd left"></span>
 						<span class="bd right"></span>
 						<span class="bd bottom"></span>
-						Envie-nos uma solicitaÃ§Ã£o, dÃºvida, sugestÃ£o ou crÃ­tica.<br>
-						 Nossa equipe responderÃ¡ o contato o quanto antes
+						Envie-nos uma solicitação, dúvida, sugestão ou crítica.<br>
+						 Nossa equipe responderá o contato o quanto antes.
 					</header>
 					
-
 					<article class="form">	
 						<h3 class="title">Mande sua mensagem</h3>	
-						<form action="#" method="post" style="width:80%;" class="form-horizontal">				
+						<form action="enviarEmail" method="post" style="width:80%;" class="form-horizontal">				
 						<fieldset >
 								<div class="form-group">		
 									<label class="control-label col-sm-3" for="nome">Nome:</label>
 									<div class="col-sm-9">
-										<input type="text" name="nome" id="nome" class="val_campo form-control">
+										<input type="text" name="nomeRemetente" id="Remetente" class="val_campo form-control">
 									</div>
 								</div>
 								<div class="form-group">		
 									<label class="control-label col-sm-3" for="email">Email:</label>
 									<div class="col-sm-9">
-										<input type="text" name="email" id="email" class="val_campo form-control">
+										<input type="text" name="emailRemetente" id="emailRemetente" class="val_campo form-control">
 									</div>
 								</div>
 								<div class="form-group">		
 									<label class="control-label col-sm-3" for="mensagem">Mensagem:</label>
 									<div class="col-sm-9">
-										<input type="text" name="mensagem" id="mensagem" class="val_campo form-control"
-											style="height: 136px; font-size: 21pt;">
+										<textarea class="form-control" rows="7" id="msgRemetente" name="msgRemetente"></textarea>
 									</div>
 								</div>
 								<div class="form-group">        
