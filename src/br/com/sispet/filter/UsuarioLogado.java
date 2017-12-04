@@ -37,15 +37,15 @@ public class UsuarioLogado implements Filter{
 		HttpSession session = req.getSession();
 		
 		Usuario u = (Usuario) session.getAttribute("usuarioLogado");
-		if (u == null) {
-			session.invalidate();
-			res.sendRedirect(contextPath + "/index.jsp");
-		} else {
+//		if (u == null) {
+//			session.invalidate();
+//			res.sendRedirect(contextPath + "/index.jsp");
+//		} else {
 			res.setHeader("Cache-control", "no-cache, no-store");
 			res.setHeader("Pragma", "no-cache");
 			res.setHeader("Expires", "-1");
 			chain.doFilter(request, response);
-		}
+//		}
 	}
 
 	@Override

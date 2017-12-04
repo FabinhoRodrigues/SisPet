@@ -1,4 +1,4 @@
-package br.com.sispet.modelo;
+package br.com.sispet.modelo.filtro;
 
 public class FiltroDeConsultaCliente extends FiltroDeConsulta{
 

@@ -26,6 +26,8 @@ public class Animal {
 	
 	private String observacoes;
 
+	private String foto;
+	
 	public long getId() {
 		return id;
 	}
@@ -96,6 +98,14 @@ public class Animal {
 
 	public void setObservacoes(String observacoes) {
 		this.observacoes = observacoes;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 }

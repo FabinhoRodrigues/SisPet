@@ -18,8 +18,13 @@
 		
 	</head>
 	<body>
+		<c:set var="url" value="cadCliente" />
+		
+		<div id="mensagens" class="msg">
+			${msg}
+		</div>
 
-		<form id="formCliente" name="formCliente" action="" method="post" >
+		<form id="formCliente" name="formCliente" action="${url}" method="post" >
 			<fieldset class="container"> 
 				<legend class="control-label">Cadastro de Cliente</legend>
 				
@@ -32,7 +37,9 @@
 
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Email:</label>	
-						<input type="email" id="emailCliente" name="emailCliente" class="form-control" value=""/>
+						<div class="input-group-addon">@</div>
+						<input type="email" id="emailCliente" name="emailCliente" class="form-control" placeholder="usuario@meudominio.com"
+							value=""/>
 					</div>
 
 					<div class="form-group col-md-4 col-sm-4">
@@ -113,6 +120,12 @@
 						<label>Observações:</label>	
 						<textarea id="observacoesAnimal" name="observacoesAnimal" class="form-control" ></textarea>
 					</div>
+					
+					<div class="form-group col-md-12 col-sm-12">
+						<label>Selecione uma foto:</label>
+  						<input type="file" class="form-control-file" id="fotoAnimal" name="fotoAnimal" />
+				        <img id='img-upload'/>
+					</div>					
 
 				</div>
 

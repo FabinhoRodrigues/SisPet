@@ -16,10 +16,10 @@ import br.com.sispet.dao.AnimalDAO;
 import br.com.sispet.dao.ClienteDAO;
 import br.com.sispet.modelo.Animal;
 import br.com.sispet.modelo.Cliente;
-import br.com.sispet.modelo.FiltroDeConsultaAnimal;
-import br.com.sispet.modelo.FiltroDeConsultaCliente;
+import br.com.sispet.modelo.filtro.FiltroDeConsultaAnimal;
+import br.com.sispet.modelo.filtro.FiltroDeConsultaCliente;
 
-@WebServlet({"/listarCliente"})
+@WebServlet({"/sistema/cadCliente", "/listarCliente"})
 public class ClienteServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -53,6 +53,7 @@ public class ClienteServlet extends HttpServlet{
 		String idade = req.getParameter("idadeAnimal");
 		String peso = req.getParameter("pesoAnimal");
 		String observacoes = req.getParameter("observacoesAnimal");
+		String fotoAnimal = req.getParameter("fotoAnimal");
 		
 		Animal animal = new Animal();
 		animal.setNome(nomeAnimal);
@@ -62,6 +63,7 @@ public class ClienteServlet extends HttpServlet{
 		animal.setIdade(StringUtils.isNotBlank(idade) ? Integer.parseInt(idade) : null);
 		animal.setPeso(StringUtils.isNotBlank(peso) ? Integer.parseInt(peso) : null);
 		animal.setObservacoes(observacoes);
+		animal.setFoto(fotoAnimal);
 		
 		List<Animal> animais = new ArrayList<Animal>();
 		animais.add(animal);
@@ -78,8 +80,8 @@ public class ClienteServlet extends HttpServlet{
 		cliente.setAnimais(animais);
 		
 		String url = req.getServletPath();
-		if(url.equalsIgnoreCase("/cadVeterinario")){
-			//cadastrar(req, resp, cliente);
+		if(url.equalsIgnoreCase("/cadCliente")){
+			cadastrar(req, resp, cliente);
 		} else if(url.equalsIgnoreCase("/altVeterinario")){
 			//alterar(req, resp, cliente);
 		} else if(url.equalsIgnoreCase("/listarCliente")){
@@ -105,6 +107,25 @@ public class ClienteServlet extends HttpServlet{
 			
 			
 		} 
+	}
+
+	private void cadastrar(HttpServletRequest req, HttpServletResponse resp, Cliente cliente) {
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			boolean resultadoInsercao = dao.cadastrar(cliente);
+			
+			String msg = "";
+			if(resultadoInsercao){
+				msg = "<div class='alert alert-success'>Cadastro efetuado com sucesso!</div>";
+			} else {
+				msg = "<div class='alert alert-danger'>Erro ao fazer o cadastro</div>";
+			}
+			
+			req.setAttribute("msg", msg);
+			req.getRequestDispatcher("index.jsp").forward(req, resp);
+		} catch (ServletException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void listarCliente(HttpServletRequest req, HttpServletResponse resp, FiltroDeConsultaCliente filtroCliente) {
@@ -143,5 +164,5 @@ public class ClienteServlet extends HttpServlet{
 			e.printStackTrace();
 		}
 	}
-	
+
 }

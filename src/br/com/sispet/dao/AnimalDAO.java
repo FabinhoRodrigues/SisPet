@@ -11,7 +11,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import br.com.sispet.factory.ConnectionFactory;
 import br.com.sispet.modelo.Animal;
-import br.com.sispet.modelo.FiltroDeConsultaAnimal;
+import br.com.sispet.modelo.filtro.FiltroDeConsultaAnimal;
 
 public class AnimalDAO {
 	

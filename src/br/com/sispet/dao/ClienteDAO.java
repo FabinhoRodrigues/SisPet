@@ -9,12 +9,11 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.mysql.jdbc.Statement;
+
 import br.com.sispet.factory.ConnectionFactory;
-import br.com.sispet.modelo.Animal;
 import br.com.sispet.modelo.Cliente;
-import br.com.sispet.modelo.FiltroDeConsulta;
-import br.com.sispet.modelo.FiltroDeConsultaAnimal;
-import br.com.sispet.modelo.FiltroDeConsultaCliente;
+import br.com.sispet.modelo.filtro.FiltroDeConsultaCliente;
 
 public class ClienteDAO {
 
@@ -84,5 +83,24 @@ public class ClienteDAO {
 		} 
 		
 		return query.toString();
+	}
+
+	public boolean cadastrar(Cliente cliente) {
+		PreparedStatement ps = null;
+		try{
+			conexao = new ConnectionFactory().getConnection();
+			
+			String sql = "";
+			
+			ps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			
+			
+			ps.execute();
+			
+			
+		} catch(SQLException e){
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
