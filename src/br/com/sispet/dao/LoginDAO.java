@@ -48,6 +48,7 @@ public class LoginDAO {
 				rs.next();
 				
 				Veterinario vet = new Veterinario();
+				vet.setId(usuario.getId());
 				vet.setNome(usuario.getNome());
 				vet.setUsuario(usuario.getUsuario());
 				vet.setPerfil(usuario.getPerfil());

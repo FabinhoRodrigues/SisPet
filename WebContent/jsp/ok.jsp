@@ -7,7 +7,7 @@
 <title>Sucesso</title>
 <script type="text/javascript">
   document.write="Preparando...";
-  window.setTimeout("location.href='/SisPet/index.jsp'", 1000)
+  window.setTimeout("location.href='/SisPet/jsp/index.jsp'", 1000)
 </script> 
 </head>
 <body>

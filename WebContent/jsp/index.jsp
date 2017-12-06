@@ -7,17 +7,17 @@
 			<meta charset="utf-8">
 		    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 		    <meta name="viewport" content="width=device-width, initial-scale=1">			
-			<link rel="stylesheet" type="text/css" href="resources/slick/slick.css"/>
-			<link rel="stylesheet" type="text/css" href="resources/slick/slick-theme.css"/>
-			<link rel="stylesheet" href="resources/css/estilo.css">
+			<link rel="stylesheet" type="text/css" href="../resources/slick/slick.css"/>
+			<link rel="stylesheet" type="text/css" href="../resources/slick/slick-theme.css"/>
+			<link rel="stylesheet" href="../resources/css/estilo.css">
 
 			<link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
-			<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
-			<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+			<link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+			<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
 					
-			<script src="resources/js/jquery-2.1.4.min.js" type="text/javascript"></script>
-		    <script src="resources/js/jquery-maskedinput/src/jquery.maskedinput.js" type="text/javascript"></script>
-		    <script src="resources/js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
+			<script src="../resources/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+		    <script src="../resources/js/jquery-maskedinput/src/jquery.maskedinput.js" type="text/javascript"></script>
+		    <script src="../resources/js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
 		    
 		    <%@page import="br.com.sispet.modelo.Usuario"%>
 
@@ -48,9 +48,9 @@
 						<ul class="g1" id="menu">
 							<li class="g2"><a href="#negocios">Conheça a Sispet</a></li>
 
-							<li class="g2"><a href="sistema/cadastroCliente.jsp">Clientes</a>
+							<li class="g2"><a href="cadastroCliente.jsp">Clientes</a>
 							
-							<li class="g2"><a href="sistema/registrosDeClientes.jsp">Registros</a></li>	
+							<li class="g2"><a href="registrosDeClientes.jsp">Registros</a></li>	
 
 							<li class="g2"><a href="#rodape">Faça Contato</a></li>	
 						</ul>
@@ -61,8 +61,8 @@
 		  <!-- BANNER -->
 			
 			<div class="banner">
-				<div><img src="resources/img/main-banner.jpg"></div>
-				<div><img class="position-banner02" src="resources/img/banner2.png"></div>				
+				<div><img src="../resources/img/main-banner.jpg"></div>
+				<div><img class="position-banner02" src="../resources/img/banner2.png"></div>				
 			</div>
 
 			<!-- BANNER DESCRIÃÃO -->
@@ -142,9 +142,9 @@
 				</div>
 			</section>	
 
-				<script type="text/javascript" src="resources/js/script.js"></script>
-				<script type="text/javascript" src="resources/slick/slick.min.js"></script>
-				<script src="resources/bootstrap/js/bootstrap.min.js"></script>	
+				<script type="text/javascript" src="../resources/js/script.js"></script>
+				<script type="text/javascript" src="../resources/slick/slick.min.js"></script>
+				<script type="text/javascript" src="../resources/bootstrap/js/bootstrap.min.js"></script>	
 				
 				
 			</body>	

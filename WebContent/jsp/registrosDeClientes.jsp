@@ -68,7 +68,7 @@ $(document).ready(function() {
 		
 	<div class="tab-content">
 		<form id="formCliente" name="formCliente" action="listarCliente" method="post" >
-			<input type="hidden" name="flagBusca" id="flagBusca" />
+			<input type="hidden" name="flagBusca" id="flagBusca" value="${flagBusca}"/>
 		    <fieldset class="container"> 
 			    
 				<ul class="nav nav-tabs" style="margin: 3% 0 3% 0;">
@@ -92,8 +92,8 @@ $(document).ready(function() {
 							<label>Sexo:</label>	
 							<select id="sexoCliente" name="sexoCliente" class="form-control">
 								<option value="">Selecione</option>
-								<option value="F">Feminino</option>
-								<option value="M">Masculino</option>
+								<option value="F" <c:if test= "${(fa.sexo eq 'F')}">selected</c:if>>Feminino</option>
+								<option value="M" <c:if test= "${(fa.sexo eq 'M')}">selected</c:if>>Masculino</option>
 							</select>
 						</div>
 									
@@ -102,27 +102,6 @@ $(document).ready(function() {
 							<input type="text" id="cpfCliente" name="cpfCliente" class="form-control" value="${fc.cpf}"/>
 						</div>
 				
-						<!-- 
-						<div class="form-group col-md-4 col-sm-4">
-							<label>Tel:</label>	
-							<input type="text" id="telCliente" name="telCliente" class="form-control" value=""/>
-						</div>
-				
-						<div class="form-group col-md-4 col-sm-4">
-							<label>Endereço:</label>	
-							<input type="text" id="enderecoCliente" name="enderecoCliente" class="form-control" value=""/>
-						</div>			
-				
-						<div class="form-group col-md-4 col-sm-4">
-							<label>Número:</label>	
-							<input type="text" id="numeroEndCliente" name="numeroEndCliente" class="form-control" value=""/>
-						</div>
-				
-						<div class="form-group col-md-4 col-sm-4">	
-							<label>Complemento:</label>	
-							<input type="text" id="complementoEndCliente" name="complementoEndCliente" class="form-control" value=""/>
-						</div>
-				 		-->
 					</div>
 				</div>
 				
@@ -138,8 +117,8 @@ $(document).ready(function() {
 							<label>Sexo:</label>	
 							<select id="sexoAnimal" name="sexoAnimal" class="form-control">
 								<option value="">Selecione</option>
-								<option value="F">Fêmea</option>
-								<option value="M">Macho</option>
+								<option value="F" <c:if test= "${(fa.sexo eq 'F')}">selected</c:if>>Fêmea</option>
+								<option value="M" <c:if test= "${(fa.sexo eq 'M')}">selected</c:if>>Macho</option>
 							</select>
 							</div>
 				
@@ -157,24 +136,13 @@ $(document).ready(function() {
 							<label>Idade:</label>	
 							<input type="text" id="idadeAnimal" name="idadeAnimal" class="form-control" value="${fa.idade}"/>
 						</div>
-							<!-- 
-						<div class="form-group col-md-4 col-sm-4">
-							<label>Peso:</label>	
-							<input type="text" id="pesoAnimal" name="pesoAnimal" class="form-control" value=""/>
-						</div>
-				
-						<div class="form-group col-md-12 col-sm-12">
-							<label>Observações:</label>	
-							<textarea id="observacoesAnimal" name="observacoesAnimal" class="form-control" ></textarea>
-						</div>
-				 			-->
 					</div>
 				</div>	
 			
 				<div class="row">
 					<div class="form-group col-md-12 col-sm-12">
 						<input type="button" id="btnPesquisar" name="btnPesquisar" class="btn btn-primary" value="Pesquisar" />
-						<input type="button" id="btnLimpar" name="btnLimpar" class="btn btn-primary btlimpar" value="Limpar" />
+						<input type="reset" id="btnLimpar" name="btnLimpar" class="btn btn-primary btlimpar" value="Limpar" />
 						<input type="button" id="btnVoltar" name="btnVoltar" class="btn btn-primary" class="btvoltar" value="Voltar" />
 					</div>
 				</div>
@@ -198,6 +166,8 @@ $(document).ready(function() {
 		      <th>Sexo</th>
 		      <th>cpf</th>
 		      <th>Telefone</th>
+		      <th>Alterar</th>
+		      <th>Remover</th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -208,6 +178,16 @@ $(document).ready(function() {
 				    <td>${cliente.sexo}</td>
 				    <td>${cliente.cpf}</td>
 				    <td>${cliente.telefone}</td>
+				    <td>
+				    	<a href="#" class="btn btn-default btn-lg">
+         					<span class="glyphicon glyphicon-pencil" style="color:darkcyan"></span>
+        				</a>
+        			</td>
+				    <td>
+				    	<a href="excluirCliente?id=${cliente.id}&flagBusca=C" class="btn btn-default btn-lg">
+         					<span class="glyphicon glyphicon-remove" style="color:red"></span>
+        				</a>
+        			</td>
 		    	</tr>
 		    </c:forEach>
 		  </tbody>
@@ -235,6 +215,16 @@ $(document).ready(function() {
 					    <td>${animal.sexo}</td>
 					    <td>${animal.especie}</td>
 					    <td>${animal.raca}</td>
+					    <td>
+				    	<a href="#" class="btn btn-default btn-lg">
+         					<span class="glyphicon glyphicon-pencil" style="color:darkcyan"></span>
+        				</a>
+        				</td>
+					      <td>
+					    	<a href="excluirCliente?id=${animal.id}&flagBusca=A" class="btn btn-default btn-lg">
+	         					<span class="glyphicon glyphicon-remove" style="color:red"></span>
+	        				</a>
+	        			</td>
 			    	</tr>
 			    </c:forEach>
 			  </tbody>

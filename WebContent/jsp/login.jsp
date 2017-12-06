@@ -3,10 +3,12 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<link rel="stylesheet" href="resources/css/estilo.css">
+	<link rel="stylesheet" href="../resources/css/estilo.css">
 	<link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
-	<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
+	
+	<script src="../resources/js/jquery-2.1.4.min.js" type="text/javascript"></script>	
 	
 	<title>Login</title>
 </head>
@@ -19,7 +21,7 @@
 	<div class="cadastroUsuarios">
 	
 		<div class="position-dog-img">	
-		<div><img src="resources/img/dog-img.png"></div>
+		<div><img src="../resources/img/dog-img.png"></div>
 		Nao possui cadastro e é veterinário?<a href="cadastroVeterinario.jsp">Clique aqui</a>	
 		</div>
 	</div>
@@ -38,10 +40,11 @@
 		    	<label><input type="checkbox">Remember me</label>
 		  	</div>
 		  	<button type="submit" class="btn btn-default btn-login">Submit</button>
+		  	<input type="button" id="btnVoltar" name="btnVoltar" class="btn btn-default btvoltar" value="Voltar" />
 		</form>
 	</div>
 
-	<script type="text/javascript" src="resources/js/script.js"></script>
-	<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../resources/js/script.js"></script>
+	<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
 </body>
 </html>

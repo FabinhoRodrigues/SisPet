@@ -140,4 +140,38 @@ public class ClienteDAO {
 		}
 		return false;
 	}
+
+	public boolean excluir(Long id_cliente) {
+		PreparedStatement ps = null; 
+		boolean sucesso = false;
+		try {
+			conexao = new ConnectionFactory().getConnection();
+			conexao.setAutoCommit(false);
+			
+			String sql = "DELETE FROM animal WHERE id_cliente = ?";
+			ps = conexao.prepareStatement(sql);
+			ps.setLong(1, id_cliente);
+			ps.execute();
+			sucesso = true;
+			
+			sql = "DELETE FROM cliente WHERE id = ?";
+			
+			ps = conexao.prepareStatement(sql);
+			ps.setLong(1, id_cliente);
+			ps.execute();
+			
+			conexao.commit();
+			sucesso = true;
+		} catch (SQLException e1) {
+			System.out.println("Código de Erro: " + e1.getErrorCode() + "Mensagem de Erro =  " + e1.getMessage());
+		} finally {
+			try {
+				conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return sucesso;
+	}
+
 }

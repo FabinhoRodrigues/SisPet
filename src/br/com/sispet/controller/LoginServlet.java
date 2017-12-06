@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 import br.com.sispet.dao.LoginDAO;
 import br.com.sispet.modelo.Usuario;
 
-@WebServlet("/login")
+@WebServlet("/jsp/login")
 public class LoginServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
@@ -34,11 +34,10 @@ public class LoginServlet extends HttpServlet{
 		Usuario usuario = new LoginDAO().logar(login, senha);
 		if(usuario != null){
 			req.setAttribute("usuario", usuario);
-			req.setAttribute("msg", "Logado Com sucesso!");
 			session.setAttribute("usuarioLogado", usuario);	
 			req.getRequestDispatcher("index.jsp").forward(req, resp);
 		} else {
-			req.setAttribute("msg", "Erro ao fazer o login");
+			req.setAttribute("msg", "<div class='alert alert-danger'>Erro ao fazer o login</div>");
 			session.setAttribute("usuarioLogado", usuario);
 			req.getRequestDispatcher("login.jsp").forward(req, resp);
 		}

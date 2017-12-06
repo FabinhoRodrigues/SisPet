@@ -46,7 +46,6 @@ create table animal(
 	idade int not null,
 	peso int not null,
 	observacoes text,
-	foto varchar(100),
 
 	foreign key (id_cliente) references cliente(id)
 );

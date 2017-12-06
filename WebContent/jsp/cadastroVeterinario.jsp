@@ -7,14 +7,14 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<script src="resources/js/jquery-2.1.4.min.js" type="text/javascript"></script>
-	    <script src="resources/js/jquery-maskedinput/src/jquery.maskedinput.js" type="text/javascript"></script>
-	    <script src="resources/js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
+		<script src="../resources/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+	    <script src="../resources/js/jquery-maskedinput/src/jquery.maskedinput.js" type="text/javascript"></script>
+	    <script src="../resources/js/jquery-validation/jquery.validate.js" type="text/javascript"></script>
 	    
-		<link rel="stylesheet" href="resources/css/estilo.css">
+		<link rel="stylesheet" href="../resources/css/estilo.css">
 		<link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
-		<link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
 		
 	</head>
 	<body>
@@ -30,8 +30,9 @@
 			${msg}
 		</div>
 			
-		<h1>Cadastro de Veterinário(a)</h1>
-	
+		<div id="cadastro-veterinario-head"> 
+			<h1>Cadastro de Veterinário(a)</h1>
+		</div>
 		<form id="formVeterinario" action="${url}" method="post" >
 			<fieldset  class="container">
 				<legend class="control-label">Login e Senha</legend>
@@ -87,7 +88,7 @@
 			</fieldset>
 		</form>
 
-		<script type="text/javascript" src="resources/js/script.js"></script>
-		<script src="resources/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../resources/js/script.js"></script>
+		<script src="../resources/bootstrap/js/bootstrap.min.js"></script>
 	</body>
 </html>

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.sispet.modelo.Email;
 
-@WebServlet("/enviarEmail")
+@WebServlet("/jsp/enviarEmail")
 public class EmailServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

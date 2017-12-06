@@ -12,7 +12,7 @@ import br.com.sispet.dao.VeterinarioDAO;
 import br.com.sispet.modelo.Usuario;
 import br.com.sispet.modelo.Veterinario;
 
-@WebServlet({"/cadVeterinario", "/altVeterinario"})
+@WebServlet({"/jsp/cadVeterinario", "/jsp/altVeterinario"})
 public class VeterinarioServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -44,9 +44,9 @@ public class VeterinarioServlet extends HttpServlet {
 		
 		
 		String url = req.getServletPath();
-		if(url.equalsIgnoreCase("/cadVeterinario")){
+		if(url.equalsIgnoreCase("/jsp/cadVeterinario")){
 			cadastrar(req, resp, veterinario);
-		}else if(url.equalsIgnoreCase("/altVeterinario")){
+		}else if(url.equalsIgnoreCase("/jsp/altVeterinario")){
 			alterar(req, resp, veterinario);
 		}
 		

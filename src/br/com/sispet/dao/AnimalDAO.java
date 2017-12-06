@@ -85,4 +85,104 @@ public class AnimalDAO {
 		return query.toString();
 	}
 
+	public Animal getAnimalById(Long idAnimal) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		Animal animal = null;
+		try {
+			conexao = new ConnectionFactory().getConnection();
+
+			String sql = "SELECT * FROM animal WHERE id = ? ";
+
+			ps = conexao.prepareStatement(sql);
+			ps.setLong(1, idAnimal);
+
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				animal = new Animal();
+				animal.setId(rs.getLong("id"));
+				animal.setId_cliente(rs.getLong("id_cliente"));
+				animal.setNome(rs.getString("nome"));
+				animal.setSexo(rs.getString("sexo"));
+				animal.setEspecie(rs.getString("especie"));
+				animal.setRaca(rs.getString("raca"));
+				animal.setIdade(rs.getInt("idade"));
+				animal.setPeso(rs.getInt("peso"));
+				animal.setObservacoes(rs.getString("observacoes"));
+
+			}
+
+			return animal;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				conexao.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return null;
+	}
+	
+	public int getQuantidadeDeAnimaisDoCliente(long id_cliente) {
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			conexao = new ConnectionFactory().getConnection();
+
+			String sql = "SELECT * FROM animal WHERE id_cliente = ? ";
+
+			ps = conexao.prepareStatement(sql);
+			ps.setLong(1, id_cliente);
+
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				count++;
+			}
+
+			return count;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				ps.close();
+				conexao.close();
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
+
+	public boolean excluir(Long idAnimal) {
+		PreparedStatement ps = null; 
+		boolean sucesso = false;
+		
+		try {
+			conexao = new ConnectionFactory().getConnection();
+			
+			String sql = "DELETE FROM animal WHERE id = ?";
+			ps = conexao.prepareStatement(sql);
+			ps.setLong(1, idAnimal);
+			ps.execute();
+			sucesso = true;
+			
+			return sucesso;
+			
+		} catch (SQLException e1) {
+			System.out.println("Código de Erro: " + e1.getErrorCode() + "Mensagem de Erro =  " + e1.getMessage());
+		} finally {
+			try {
+				conexao.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return sucesso;
+	}
 }

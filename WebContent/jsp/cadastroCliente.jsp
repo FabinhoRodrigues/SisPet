@@ -17,8 +17,7 @@
 		<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
 	
 	<script type="text/javascript">
-		
-		var animais = new Array();
+	$(document).ready(function(){
 		$("#btnSalvar").click(function(){
 			$.post("cadCliente/listaAnimal" ,{ 
 				nomeAnimal: $("#nomeAnimal").val(),
@@ -38,15 +37,16 @@
 	        		 	}
 	        		} 
 	        	
-	            $(".list-group").append('<li class="list-group-item">' + nome + '<a class="acaoLista" href="javascript:void(0)"><span class= "glyphicon glyphicon-remove iconeRemove" aria-hidden= "true" ></span></a></li>');
-	    
+	        	if(nome != ""){
+	            	$(".list-group").append('<li class="list-group-item">' + nome + '<a class="acaoLista" href="javascript:void(0)"><span class= "glyphicon glyphicon-remove iconeRemove" aria-hidden= "true" ></span></a></li>');
+	        	}
 	         });
 		});
 		
 		$(".acaoLista").click(function(){
 			$(this).closest('li').remove();
 		});
-		
+	});
 	</script>
 	</head>
 	<body>
@@ -69,7 +69,6 @@
 
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Email:</label>	
-						<span class="input-group-addon" id="basic-addon1">@</span>
 						<input type="email" id="emailCliente" name="emailCliente" class="form-control" placeholder="usuario@meudominio.com"
 							value=""/>
 					</div>
@@ -151,12 +150,6 @@
 					<div class="form-group col-md-12 col-sm-12">
 						<label>Observações:</label>	
 						<textarea id="observacoesAnimal" name="observacoesAnimal" class="form-control" ></textarea>
-					</div>
-					
-					<div class="form-group col-md-12 col-sm-12">
-						<label>Selecione uma foto:</label>
-  						<input type="file" class="form-control-file" id="fotoAnimal" name="fotoAnimal" />
-				        <img id='img-upload'/>
 					</div>
 					
 					<div class="form-group col-md-12 col-sm-12">

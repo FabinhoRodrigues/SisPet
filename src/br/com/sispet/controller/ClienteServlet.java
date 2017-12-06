@@ -21,7 +21,7 @@ import br.com.sispet.modelo.Usuario;
 import br.com.sispet.modelo.filtro.FiltroDeConsultaAnimal;
 import br.com.sispet.modelo.filtro.FiltroDeConsultaCliente;
 
-@WebServlet({"/sistema/cadCliente", "/sistema/cadCliente/listaAnimal", "/sistema/listarCliente"})
+@WebServlet({"/jsp/cadCliente", "/jsp/cadCliente/listaAnimal", "/jsp/listarCliente", "/jsp/excluirCliente"})
 public class ClienteServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -30,13 +30,15 @@ public class ClienteServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+		execute(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		execute(req, resp);
+	}
 
+	private void execute(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 		String flagBusca = req.getParameter("flagBusca");
 		
 		/* Cliente */	
@@ -57,12 +59,8 @@ public class ClienteServlet extends HttpServlet{
 		String idade = req.getParameter("idadeAnimal");
 		String peso = req.getParameter("pesoAnimal");
 		String observacoes = req.getParameter("observacoesAnimal");
-		String fotoAnimal = req.getParameter("fotoAnimal");
-		
-
 		
 		Animal animal = new Animal();
-		
 		animal.setNome(nomeAnimal);
 		animal.setSexo(sexoAnimal);
 		animal.setEspecie(especie);
@@ -70,7 +68,6 @@ public class ClienteServlet extends HttpServlet{
 		animal.setIdade(StringUtils.isNotBlank(idade) ? Integer.parseInt(idade) : null);
 		animal.setPeso(StringUtils.isNotBlank(peso) ? Integer.parseInt(peso) : null);
 		animal.setObservacoes(observacoes);
-		animal.setFoto(fotoAnimal);
 		
 		Cliente cliente = new Cliente();
 		cliente.setNome(nomeCliente);
@@ -85,15 +82,24 @@ public class ClienteServlet extends HttpServlet{
 		
 		String url = req.getServletPath();
 		
-		if(url.equalsIgnoreCase("/sistema/cadCliente")){
+		if(url.equalsIgnoreCase("/jsp/cadCliente")){
 			cadastrar(req, resp, cliente);
-		} else if(url.equalsIgnoreCase("/sistema/cadCliente/listaAnimal")){
+		} else if(url.equalsIgnoreCase("/jsp/cadCliente/listaAnimal")){
 			listaAnimal.add(animal);
 			
 			resp.getWriter().print(animal.getNome());
-		} else if(url.equalsIgnoreCase("/sistema/altCliente")){
+		} else if(url.equalsIgnoreCase("/jsp/altCliente")){
 			//alterar(req, resp, cliente);
-		} else if(url.equalsIgnoreCase("/sistema/listarCliente")){
+			
+		} else if(url.equalsIgnoreCase("/jsp/excluirCliente")){
+			
+			if("C".equals(flagBusca)){
+				excluirCliente(req, resp);
+			} else if("A".equals(flagBusca)){
+				excluirAnimal(req, resp);
+	        }
+			
+		} else if(url.equalsIgnoreCase("/jsp/listarCliente")){
 			
 			if("C".equals(flagBusca)){
 				FiltroDeConsultaCliente filtroCliente = new FiltroDeConsultaCliente();
@@ -102,7 +108,7 @@ public class ClienteServlet extends HttpServlet{
 				filtroCliente.setSexo(sexoCliente);
 				filtroCliente.setCpf(cpf);
 	        
-				listarCliente(req, resp, filtroCliente);
+				listarCliente(req, resp, filtroCliente, flagBusca);
 			} else if("A".equals(flagBusca)){
 				FiltroDeConsultaAnimal filtroAnimal = new FiltroDeConsultaAnimal();
 				filtroAnimal.setNome(nomeAnimal);
@@ -114,7 +120,6 @@ public class ClienteServlet extends HttpServlet{
 				listarAnimal(req, resp, filtroAnimal, flagBusca);
 	        }
 			
-			
 		} 
 	}
 
@@ -122,7 +127,10 @@ public class ClienteServlet extends HttpServlet{
 		try {
 			HttpSession session = req.getSession();
 			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
-			long id_usuario = usuario.getId();
+			
+			long id_usuario = 0;
+			if(usuario != null)
+				id_usuario = usuario.getId();
 			
 			ClienteDAO dao = new ClienteDAO();
 			boolean resultadoInsercao = dao.cadastrar(cliente, id_usuario);
@@ -135,13 +143,13 @@ public class ClienteServlet extends HttpServlet{
 			}
 			
 			req.setAttribute("msg", msg);
-			req.getRequestDispatcher("index.jsp").forward(req, resp);
+			req.getRequestDispatcher("cadastroCliente.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void listarCliente(HttpServletRequest req, HttpServletResponse resp, FiltroDeConsultaCliente filtroCliente) {
+	private void listarCliente(HttpServletRequest req, HttpServletResponse resp, FiltroDeConsultaCliente filtroCliente, String flagBusca) {
 		try {
 			ClienteDAO dao = new ClienteDAO();
 			List<Cliente> clientes = dao.listar(filtroCliente);
@@ -152,6 +160,7 @@ public class ClienteServlet extends HttpServlet{
 				req.setAttribute("fc", filtroCliente);
 			}
 			
+			req.setAttribute("flagBusca", flagBusca);
 	        req.setAttribute("clientes", clientes);
 			req.getRequestDispatcher("registrosDeClientes.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {
@@ -175,6 +184,59 @@ public class ClienteServlet extends HttpServlet{
 			req.getRequestDispatcher("registrosDeClientes.jsp").forward(req, resp);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void excluirCliente(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try{
+			
+			Long id = new Long(req.getParameter("id"));
+			ClienteDAO dao = new ClienteDAO();
+			
+			if(dao.excluir(id)){
+				req.setAttribute("msg", "<div class='alert alert-success'>Cliente "
+						+ " excluído com sucesso!</div>");
+			} else {
+				req.setAttribute("msg", "<div class='alert alert-danger'>Cliente "
+						+ " não excluido</div>");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			req.getRequestDispatcher("registrosDeClientes.jsp").forward(req, resp);
+		}
+	}
+	
+	private void excluirAnimal(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try{
+			
+			Long idAnimal = new Long(req.getParameter("id"));
+			ClienteDAO clienteDao = new ClienteDAO();
+			AnimalDAO animalDao = new AnimalDAO();
+
+			Animal animal = animalDao.getAnimalById(idAnimal);
+			
+			int quantidadeDeAnimaisDoCliente = animalDao.getQuantidadeDeAnimaisDoCliente(animal.getId_cliente());
+			boolean resultado = false;
+			if(quantidadeDeAnimaisDoCliente == 1){
+				resultado = clienteDao.excluir(animal.getId_cliente());
+			} else if(quantidadeDeAnimaisDoCliente > 1){
+				resultado = animalDao.excluir(idAnimal);
+			}
+
+			if(resultado){
+				req.setAttribute("msg", "<div class='alert alert-success'>Animal "
+						+ " excluído com sucesso!</div>");
+			} else {
+				req.setAttribute("msg", "<div class='alert alert-danger'>Animal "
+						+ " não excluido</div>");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			req.getRequestDispatcher("registrosDeClientes.jsp").forward(req, resp);
 		}
 	}
 

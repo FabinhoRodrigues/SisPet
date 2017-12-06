@@ -8,7 +8,7 @@ public class ConnectionFactory {
 	
 	private static final String URL = "jdbc:mysql://localhost/sispet";
 	private static final String USER = "root";
-	private static final String PASS = "root";
+	private static final String PASS = "1234";
 
 	public Connection getConnection(){
 		try{

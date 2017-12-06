@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import br.com.sispet.modelo.Usuario;
 
-@WebFilter(filterName = "UsuarioLogado", urlPatterns = {"/sistema/*"})
+@WebFilter(filterName = "UsuarioLogado", urlPatterns = {"/jsp/cadastroCliente.jsp", "/jsp/registrosDeClientes.jsp"})
 public class UsuarioLogado implements Filter{
 	
 	private String contextPath;
@@ -36,10 +36,10 @@ public class UsuarioLogado implements Filter{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
 		
-		Usuario u = (Usuario) session.getAttribute("usuarioLogado");
+//		Usuario u = (Usuario) session.getAttribute("usuarioLogado");
 //		if (u == null) {
 //			session.invalidate();
-//			res.sendRedirect(contextPath + "/index.jsp");
+//			res.sendRedirect(contextPath + "/jsp/index.jsp");
 //		} else {
 			res.setHeader("Cache-control", "no-cache, no-store");
 			res.setHeader("Pragma", "no-cache");
