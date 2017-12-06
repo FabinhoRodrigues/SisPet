@@ -17,11 +17,10 @@
 		<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
 	
 	<script type="text/javascript">
-	$(document).ready(function() {	
 		
 		var animais = new Array();
 		$("#btnSalvar").click(function(){
-			$.post( "cadCliente/listaAnimal" ,{ 
+			$.post("cadCliente/listaAnimal" ,{ 
 				nomeAnimal: $("#nomeAnimal").val(),
 				sexoAnimal: $("#sexoAnimal").val(),
 				especieAnimal: $("#especieAnimal").val(),
@@ -34,7 +33,7 @@
 	         .done(function(data) {
 	    		alert("Enviado com sucesso")
 	    		alert(data);
-	            $(".list-group").html('<li class="list-group-item">' + data[0].nome + '<a class="acaoLista" href="javascript:void(0)"><span class= "glyphicon glyphicon-remove iconeRemove" aria-hidden= "true" ></span></a></li>');
+	            $(".list-group").append('<li class="list-group-item">' + nome + '<a class="acaoLista" href="javascript:void(0)"><span class= "glyphicon glyphicon-remove iconeRemove" aria-hidden= "true" ></span></a></li>');
 	    
 	         });
 		});
@@ -43,10 +42,6 @@
 			$(this).closest('li').remove();
 		});
 		
-	});
-	
-	
-	
 	</script>
 	</head>
 	<body>

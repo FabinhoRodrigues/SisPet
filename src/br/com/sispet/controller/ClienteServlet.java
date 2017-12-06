@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.gson.Gson;
+
 import br.com.sispet.dao.AnimalDAO;
 import br.com.sispet.dao.ClienteDAO;
 import br.com.sispet.modelo.Animal;
@@ -35,9 +37,7 @@ public class ClienteServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String jsonAnimal = req.getParameter("cadCliente");
-		
-		
+		String jsonAnimal = req.getParameter("cadCliente");	
 		
 		String flagBusca = req.getParameter("flagBusca");
 		
@@ -61,7 +61,10 @@ public class ClienteServlet extends HttpServlet{
 		String observacoes = req.getParameter("observacoesAnimal");
 		String fotoAnimal = req.getParameter("fotoAnimal");
 		
+
+		
 		Animal animal = new Animal();
+		
 		animal.setNome(nomeAnimal);
 		animal.setSexo(sexoAnimal);
 		animal.setEspecie(especie);
