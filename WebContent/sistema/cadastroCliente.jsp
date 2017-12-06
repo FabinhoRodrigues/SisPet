@@ -32,9 +32,14 @@
 				fotoAnimal: $("#fotoAnimal").val()
 			} )
 	         .done(function(data) {
-	    		alert("Enviado com sucesso")
-	    		alert(data);
-	            $(".list-group").html('<li class="list-group-item">' + data[0].nome + '<a class="acaoLista" href="javascript:void(0)"><span class= "glyphicon glyphicon-remove iconeRemove" aria-hidden= "true" ></span></a></li>');
+	        	 var nome = "";
+	        	 for (i = 0; i < data.length; i++) {
+	        		 	if(data[i] != '"'){
+		        		    nome += data[i];
+	        		 	}
+	        		} 
+	        	
+	            $(".list-group").append('<li class="list-group-item">' + nome + '<a class="acaoLista" href="javascript:void(0)"><span class= "glyphicon glyphicon-remove iconeRemove" aria-hidden= "true" ></span></a></li>');
 	    
 	         });
 		});

@@ -9,13 +9,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import br.com.sispet.dao.AnimalDAO;
 import br.com.sispet.dao.ClienteDAO;
 import br.com.sispet.modelo.Animal;
 import br.com.sispet.modelo.Cliente;
+import br.com.sispet.modelo.Usuario;
 import br.com.sispet.modelo.filtro.FiltroDeConsultaAnimal;
 import br.com.sispet.modelo.filtro.FiltroDeConsultaCliente;
 
@@ -35,10 +40,6 @@ public class ClienteServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String jsonAnimal = req.getParameter("cadCliente");
-		
-		
-		
 		String flagBusca = req.getParameter("flagBusca");
 		
 		/* Cliente */	
@@ -71,9 +72,6 @@ public class ClienteServlet extends HttpServlet{
 		animal.setObservacoes(observacoes);
 		animal.setFoto(fotoAnimal);
 		
-		List<Animal> animais = new ArrayList<Animal>();
-		animais.add(animal);
-		
 		Cliente cliente = new Cliente();
 		cliente.setNome(nomeCliente);
 		cliente.setEmail(emailCliente);
@@ -83,7 +81,7 @@ public class ClienteServlet extends HttpServlet{
 		cliente.setEndereco(endereco);
 		cliente.setNumero(StringUtils.isNotBlank(numeroEndereco) ? Integer.parseInt(numeroEndereco) : null);
 		cliente.setComplemento(complementoEndereco);
-		cliente.setAnimais(animais);
+		cliente.setAnimais(listaAnimal);
 		
 		String url = req.getServletPath();
 		
@@ -92,7 +90,7 @@ public class ClienteServlet extends HttpServlet{
 		} else if(url.equalsIgnoreCase("/sistema/cadCliente/listaAnimal")){
 			listaAnimal.add(animal);
 			
-			req.setAttribute("listaAnimal", listaAnimal );
+			resp.getWriter().print(animal.getNome());
 		} else if(url.equalsIgnoreCase("/sistema/altCliente")){
 			//alterar(req, resp, cliente);
 		} else if(url.equalsIgnoreCase("/sistema/listarCliente")){
@@ -122,8 +120,12 @@ public class ClienteServlet extends HttpServlet{
 
 	private void cadastrar(HttpServletRequest req, HttpServletResponse resp, Cliente cliente) {
 		try {
+			HttpSession session = req.getSession();
+			Usuario usuario = (Usuario) session.getAttribute("usuarioLogado");
+			long id_usuario = usuario.getId();
+			
 			ClienteDAO dao = new ClienteDAO();
-			boolean resultadoInsercao = dao.cadastrar(cliente);
+			boolean resultadoInsercao = dao.cadastrar(cliente, id_usuario);
 			
 			String msg = "";
 			if(resultadoInsercao){

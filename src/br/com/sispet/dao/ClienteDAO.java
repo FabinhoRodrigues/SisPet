@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.mysql.jdbc.Statement;
 
 import br.com.sispet.factory.ConnectionFactory;
+import br.com.sispet.modelo.Animal;
 import br.com.sispet.modelo.Cliente;
 import br.com.sispet.modelo.filtro.FiltroDeConsultaCliente;
 
@@ -85,18 +86,54 @@ public class ClienteDAO {
 		return query.toString();
 	}
 
-	public boolean cadastrar(Cliente cliente) {
+	public boolean cadastrar(Cliente c, long id_usuario) {
 		PreparedStatement ps = null;
+		boolean sucesso = false;
+		
 		try{
 			conexao = new ConnectionFactory().getConnection();
+			conexao.setAutoCommit(false);
 			
-			String sql = "";
+			String sql = "insert into cliente (id_veterinario, nome, cpf, email, sexo, telefone, endereco, numero, complemento) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			
 			ps = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-			
+			ps.setLong(1, id_usuario);
+			ps.setString(2, c.getNome());
+			ps.setString(3, c.getCpf());
+			ps.setString(4, c.getEmail());
+			ps.setString(5, c.getSexo());
+			ps.setString(6, c.getTelefone());
+			ps.setString(7, c.getEndereco());
+			ps.setInt(8, c.getNumero());
+			ps.setString(9, c.getComplemento());
 			
 			ps.execute();
+			sucesso = true;
 			
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			int id_cliente = rs.getInt(1);
+			rs.close();
+			
+			for(Animal a : c.getAnimais()){
+				
+				sql = "insert into animal (id_cliente, nome, sexo, especie, raca, idade, peso, observacoes) values (?, ?, ?, ?, ?, ?, ?, ?)";
+				
+				ps = conexao.prepareStatement(sql);
+				ps.setLong(1, id_cliente);
+				ps.setString(2, a.getNome());
+				ps.setString(3, a.getSexo());
+				ps.setString(4, a.getEspecie());
+				ps.setString(5, a.getRaca());
+				ps.setInt(6, a.getIdade());
+				ps.setInt(7, a.getPeso());
+				ps.setString(8, a.getObservacoes());
+				
+				ps.execute();
+				sucesso = true;
+			}
+			
+			conexao.commit();
 			
 		} catch(SQLException e){
 			e.printStackTrace();
