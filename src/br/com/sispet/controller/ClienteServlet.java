@@ -19,10 +19,12 @@ import br.com.sispet.modelo.Cliente;
 import br.com.sispet.modelo.filtro.FiltroDeConsultaAnimal;
 import br.com.sispet.modelo.filtro.FiltroDeConsultaCliente;
 
-@WebServlet({"/sistema/cadCliente", "/listarCliente"})
+@WebServlet({"/sistema/cadCliente", "/sistema/cadCliente/listaAnimal", "/sistema/listarCliente"})
 public class ClienteServlet extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
+	
+	private List<Animal> listaAnimal = new ArrayList<Animal>();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,6 +35,10 @@ public class ClienteServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+		String jsonAnimal = req.getParameter("cadCliente");
+		
+		
+		
 		String flagBusca = req.getParameter("flagBusca");
 		
 		/* Cliente */	
@@ -80,11 +86,16 @@ public class ClienteServlet extends HttpServlet{
 		cliente.setAnimais(animais);
 		
 		String url = req.getServletPath();
-		if(url.equalsIgnoreCase("/cadCliente")){
+		
+		if(url.equalsIgnoreCase("/sistema/cadCliente")){
 			cadastrar(req, resp, cliente);
-		} else if(url.equalsIgnoreCase("/altVeterinario")){
+		} else if(url.equalsIgnoreCase("/sistema/cadCliente/listaAnimal")){
+			listaAnimal.add(animal);
+			
+			req.setAttribute("listaAnimal", listaAnimal );
+		} else if(url.equalsIgnoreCase("/sistema/altCliente")){
 			//alterar(req, resp, cliente);
-		} else if(url.equalsIgnoreCase("/listarCliente")){
+		} else if(url.equalsIgnoreCase("/sistema/listarCliente")){
 			
 			if("C".equals(flagBusca)){
 				FiltroDeConsultaCliente filtroCliente = new FiltroDeConsultaCliente();

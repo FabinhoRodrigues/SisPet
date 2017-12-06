@@ -50,7 +50,7 @@
 
 							<li class="g2"><a href="sistema/cadastroCliente.jsp">Clientes</a>
 							
-							<li class="g2"><a href="registrosDeClientes.jsp">Registros</a></li>	
+							<li class="g2"><a href="sistema/registrosDeClientes.jsp">Registros</a></li>	
 
 							<li class="g2"><a href="#rodape">Faça Contato</a></li>	
 						</ul>
@@ -68,7 +68,7 @@
 			<!-- BANNER DESCRIÃÃO -->
 
 			<section id="negocios">
-				<div class="container">
+				<div class="container containerPrincipal">
 						<div class="container-2">
 							<article>
 								<h1>SisPet O Sistema de ajuda ao seu Pet</h1>

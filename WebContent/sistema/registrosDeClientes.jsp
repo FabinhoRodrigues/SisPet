@@ -171,11 +171,11 @@ $(document).ready(function() {
 					</div>
 				</div>	
 			
-				<div class="row container">
+				<div class="row">
 					<div class="form-group col-md-12 col-sm-12">
 						<input type="button" id="btnPesquisar" name="btnPesquisar" class="btn btn-primary" value="Pesquisar" />
 						<input type="button" id="btnLimpar" name="btnLimpar" class="btn btn-primary btlimpar" value="Limpar" />
-						<input type="button" id="btnVoltar" name="btnVoltar" class="btn btn-primary btvoltar" value="Voltar" />
+						<input type="button" id="btnVoltar" name="btnVoltar" class="btn btn-primary" class="btvoltar" value="Voltar" />
 					</div>
 				</div>
 			</fieldset>
@@ -187,7 +187,10 @@ $(document).ready(function() {
 	</div>
 	
 	<c:if test="${(not empty clientes)}">
-		<table class="table table-striped" id="tableCliente">
+	<div class="panel panel-primary" id="tableCliente">
+    	<div class="panel-heading">Clientes</div>
+		
+		<table class="table table-striped" >
 		  <thead>
 		    <tr>
 		      <th>Nome</th>
@@ -209,29 +212,34 @@ $(document).ready(function() {
 		    </c:forEach>
 		  </tbody>
 		</table>
+	</div>
 	</c:if>
 	
 	<c:if test="${(not empty animais)}">
-		<table class="table table-striped" id="tableAnimal">
-		  <thead>
-		    <tr>
-		      <th>Nome</th>
-		      <th>Sexo</th>
-		      <th>Espécie</th>
-		      <th>Raça</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		  	<c:forEach var="animal" items="${animais}">
-		    	<tr>
-		      		<td>${animal.nome}</td>
-				    <td>${animal.sexo}</td>
-				    <td>${animal.especie}</td>
-				    <td>${animal.raca}</td>
-		    	</tr>
-		    </c:forEach>
-		  </tbody>
-		</table>
+		<div class="panel panel-primary" id="tableAnimal">
+	    	<div class="panel-heading">Animais</div>
+	    	
+			<table class="table table-striped" >
+			  <thead>
+			    <tr>
+			      <th>Nome</th>
+			      <th>Sexo</th>
+			      <th>Espécie</th>
+			      <th>Raça</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  	<c:forEach var="animal" items="${animais}">
+			    	<tr>
+			      		<td>${animal.nome}</td>
+					    <td>${animal.sexo}</td>
+					    <td>${animal.especie}</td>
+					    <td>${animal.raca}</td>
+			    	</tr>
+			    </c:forEach>
+			  </tbody>
+			</table>
+		</div>
 	</c:if>
 	
 	<script type="text/javascript" src="../resources/js/script.js"></script>

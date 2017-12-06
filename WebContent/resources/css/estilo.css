@@ -105,12 +105,14 @@ h3 {
 	    background-image: url('resources/img/color-bg.png');
 }
 
+.containerPrincipal{
+	height: 480px;
+}
 
 .container {
 	text-align: center;
 	margin:  0 auto;
 	width: 52%;
-	height: 488px;
 }
 
 .container-2 {
@@ -304,7 +306,13 @@ article.form , address {
 }
 
 .nav-tabs {
-	width: 60%;
 	margin: 2% 0 1% 20%;
 }
 
+.panel {
+	margin: 0 20px 0 20px; 
+}
+
+.iconeRemove{
+	text-align: right;
+}

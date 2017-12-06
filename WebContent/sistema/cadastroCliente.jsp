@@ -15,7 +15,39 @@
 		<link href="https://fonts.googleapis.com/css?family=Wendy+One" rel="stylesheet">
 		<link rel="stylesheet" href="../resources/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
+	
+	<script type="text/javascript">
+	$(document).ready(function() {	
 		
+		var animais = new Array();
+		$("#btnSalvar").click(function(){
+			$.post( "cadCliente/listaAnimal" ,{ 
+				nomeAnimal: $("#nomeAnimal").val(),
+				sexoAnimal: $("#sexoAnimal").val(),
+				especieAnimal: $("#especieAnimal").val(),
+				racaAnimal: $("#racaAnimal").val(),
+				idadeAnimal: $("#idadeAnimal").val(),
+				pesoAnimal: $("#pesoAnimal").val(),
+				observacoesAnimal: $("#observacoesAnimal").val(),
+				fotoAnimal: $("#fotoAnimal").val()
+			} )
+	         .done(function(data) {
+	    		alert("Enviado com sucesso")
+	    		alert(data);
+	            $(".list-group").html('<li class="list-group-item">' + data[0].nome + '<a class="acaoLista" href="javascript:void(0)"><span class= "glyphicon glyphicon-remove iconeRemove" aria-hidden= "true" ></span></a></li>');
+	    
+	         });
+		});
+		
+		$(".acaoLista").click(function(){
+			$(this).closest('li').remove();
+		});
+		
+	});
+	
+	
+	
+	</script>
 	</head>
 	<body>
 		<c:set var="url" value="cadCliente" />
@@ -37,7 +69,7 @@
 
 					<div class="form-group col-md-6 col-sm-6">
 						<label>Email:</label>	
-						<div class="input-group-addon">@</div>
+						<span class="input-group-addon" id="basic-addon1">@</span>
 						<input type="email" id="emailCliente" name="emailCliente" class="form-control" placeholder="usuario@meudominio.com"
 							value=""/>
 					</div>
@@ -125,13 +157,24 @@
 						<label>Selecione uma foto:</label>
   						<input type="file" class="form-control-file" id="fotoAnimal" name="fotoAnimal" />
 				        <img id='img-upload'/>
-					</div>					
+					</div>
+					
+					<div class="form-group col-md-12 col-sm-12">
+						<input type="button" id="btnSalvar" name="btnSalvar" class="btn btn-primary" value="Salvar Animal" />
+					</div>
+					
+					
+					<div class="form-group col-md-3 col-sm-3" id="listaAnimal">
+						<ul class="list-group">
+						</ul>
+					</div>
+										
 
 				</div>
 
 				<div class="row">
 					<div class="form-group col-md-12 col-sm-12">
-						<input type="submit" id="btnSalvar" name="btnSalvar" class="btn btn-primary" value="Salvar" />
+						<input type="submit" id="btnFinalizar" name="btnFinalizar" class="btn btn-primary" value="Finalizar" />
 						<input type="button" id="btnAlterar" name="btnAlterar" class="btn btn-primary" value="Alterar" />
 						<input type="button" id="btnLimpar" name="btnLimpar" class="btn btn-primary btlimpar" value="Limpar" />
 						<input type="button" id="btnVoltar" name="btnVoltar" class="btn btn-primary btvoltar" value="Voltar" />
