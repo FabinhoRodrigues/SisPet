@@ -17,11 +17,10 @@
 		<link rel="stylesheet" href="../resources/bootstrap/css/bootstrap.min.css">
 	
 	<script type="text/javascript">
-	$(document).ready(function() {	
 		
 		var animais = new Array();
 		$("#btnSalvar").click(function(){
-			$.post( "cadCliente/listaAnimal" ,{ 
+			$.post("cadCliente/listaAnimal" ,{ 
 				nomeAnimal: $("#nomeAnimal").val(),
 				sexoAnimal: $("#sexoAnimal").val(),
 				especieAnimal: $("#especieAnimal").val(),
@@ -48,10 +47,6 @@
 			$(this).closest('li').remove();
 		});
 		
-	});
-	
-	
-	
 	</script>
 	</head>
 	<body>

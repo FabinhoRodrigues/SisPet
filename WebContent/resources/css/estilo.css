@@ -20,7 +20,7 @@ h3 {
 
 #navbar {
     margin: 0 auto;
-    width: 740px;
+    width: 900px;
     background: #c1c3b7;
     border-radius: 40px;
     border: 2px solid;
@@ -316,3 +316,8 @@ article.form , address {
 .iconeRemove{
 	text-align: right;
 }
+
+.enviar-btn {
+	background-color: #ddd;
+}
+
